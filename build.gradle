@@ -14,10 +14,10 @@ apply plugin: 'application'
 // In this section you declare where to find the dependencies of your project
 repositories {
     jcenter()
-    maven {url 'http://maven-eclipse.github.io/maven'}
+    maven {url 'repo'}
 }
 
-String swtGroupId='org.eclipse.swt', swtVersion='4.4'
+String swtGroupId='org.eclipse.swt', swtVersion='3.7.2'
 def osDependencies = []
 if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
 
