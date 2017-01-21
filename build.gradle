@@ -13,9 +13,32 @@ apply plugin: 'application'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    maven {url 'http://maven-eclipse.github.io/maven'}
+}
+
+String swtGroupId='org.eclipse.swt', swtVersion='4.4'
+def osDependencies = []
+if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+
+    // 区分32位和64位
+    String arch = System.getenv("PROCESSOR_ARCHITECTURE")
+    String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432")
+    String is64Arch = (arch != null && arch.endsWith("64")) \
+                   || (wow64Arch != null && wow64Arch.endsWith("64")) ? "64" : "32"
+
+    if(is64Arch) {
+        osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
+    }
+    else {
+        osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
+    }
+
+} else {
+
+    // 全部编译
+    osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
+    osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
 }
 
 
@@ -23,11 +46,15 @@ dependencies {
     // The production code uses Guava
     compile 'com.google.guava:guava:20.0'
 
+    // 系统相关的依赖
+    compile osDependencies
+
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 }
 
 
-
-mainClassName = "com.aiziyuer.app.CoreApplication"
-applicationDefaultJvmArgs = ["-Dgreeting.language=en"]
+build{
+    mainClassName = "com.aiziyuer.app.CoreApplication"
+    applicationDefaultJvmArgs = ["-Dgreeting.language=en"]
+}
