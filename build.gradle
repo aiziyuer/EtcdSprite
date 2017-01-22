@@ -43,6 +43,12 @@ dependencies {
     compile 'org.eclipse.jface:org.eclipse.jface:3.7.0.v20110928-1505'
     compile 'org.eclipse.core:org.eclipse.core.commands:3.6.0.I20110111-0800'
     compile 'org.eclipse.osgi:org.eclipse.osgi:3.7.2.v20120110-1415'
+    compile files('libs/com.ibm.icu_4.4.2.v20110823.jar')
+    compile files('libs/org.eclipse.core.databinding_1.4.0.I20110111-0800.jar')
+    compile files('libs/org.eclipse.core.databinding.beans_1.2.100.I20100824-0800.jar')
+    compile files('libs/org.eclipse.core.databinding.observable_1.4.0.I20110222-0800.jar')
+    compile files('libs/org.eclipse.core.databinding.property_1.4.0.I20110222-0800.jar')
+    
 
     // 测试用框架
     testCompile 'junit:junit:4.12'
