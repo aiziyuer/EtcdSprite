@@ -127,7 +127,7 @@ task copyStaticFile(type: Copy) {
 
     copy {
         // 拷贝数据库文件
-        from 'db'
+        from 'db/app.db'
         into PACKAGE_DIR + '/db'
     }
 }
