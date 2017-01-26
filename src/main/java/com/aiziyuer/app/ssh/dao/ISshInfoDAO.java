@@ -8,5 +8,5 @@ public interface ISshInfoDAO {
 	 * 
 	 * @return 返回所有的连接信息
 	 */
-	SshInfoPO queryAllSshInfoBos();
+	SshInfoPO listSshInfoBos();
 }

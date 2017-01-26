@@ -23,7 +23,7 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
     String arch = System.getenv("PROCESSOR_ARCHITECTURE")
     String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432")
     String is64Arch = (arch != null && arch.endsWith("64")) \
-                                         || (wow64Arch != null && wow64Arch.endsWith("64")) ? "64" : "32"
+                                           || (wow64Arch != null && wow64Arch.endsWith("64")) ? "64" : "32"
 
     if (is64Arch) {
         osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
@@ -73,8 +73,11 @@ dependencies {
 
     // 配置数据库
     compile group: 'org.springframework', name: 'spring-jdbc', version: SPRING_VERSION
+    compile group: 'org.springframework', name: 'spring-orm', version: SPRING_VERSION
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.11.Final'
+    compile 'com.enigmabridge:hibernate4-sqlite-dialect:0.1.2'
     compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.0'
-    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.7.2'
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.16.1'
 
     // 测试用框架
     testCompile 'junit:junit:4.12'
@@ -120,6 +123,12 @@ task copyStaticFile(type: Copy) {
         // 配置Spring文件
         from 'config/spring'
         into PACKAGE_DIR + '/config/spring'
+    }
+
+    copy {
+        // 拷贝数据库文件
+        from 'db'
+        into PACKAGE_DIR + '/db'
     }
 }
 

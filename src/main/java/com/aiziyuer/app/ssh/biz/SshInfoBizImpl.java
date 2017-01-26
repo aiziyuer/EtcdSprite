@@ -12,11 +12,11 @@ public class SshInfoBizImpl implements ISshInfoBiz {
     private ISshInfoDAO sshInfoDAO;
 
     @Override
-    public SshInfoBO queryAllSshInfoBos() {
+    public SshInfoBO listSshInfoBos() {
 
-        log.info("queryAllSshInfoBos");
+        log.info("listSshInfoBos");
 
-        sshInfoDAO.queryAllSshInfoBos();
+        sshInfoDAO.listSshInfoBos();
 
         return null;
     }

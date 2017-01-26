@@ -9,6 +9,6 @@ public interface ISshInfoBiz {
 	 * 
 	 * @return 返回所有的连接信息
 	 */
-	SshInfoBO queryAllSshInfoBos();
+	SshInfoBO listSshInfoBos();
 
 }

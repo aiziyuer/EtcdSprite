@@ -1,5 +1,7 @@
 package com.aiziyuer.app;
 
+import com.aiziyuer.app.framework.util.ServiceLocator;
+import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
 import lombok.extern.log4j.Log4j2;
 import org.eclipse.swt.widgets.Display;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -19,6 +21,9 @@ public class CoreApplication {
         log.info("start gui start.");
 
         try {
+
+            ISshInfoBiz sshInfoBiz = ServiceLocator.getInstance().getService("sshInfoBiz");
+            sshInfoBiz.listSshInfoBos();
 
             MainApplicationWindow window = new MainApplicationWindow();
 
