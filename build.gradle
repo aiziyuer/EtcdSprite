@@ -40,16 +40,6 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
 
 ////// -----------------------Java编译依赖配置开始 ---------------------------//////////
 apply plugin: 'java'
-sourceSets {
-    main {
-        resources {
-            srcDir "config"
-        }
-        java {
-            srcDir "src/man/java"
-        }
-    }
-}
 
 dependencies {
     // The production code uses Guava
