@@ -8,7 +8,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public class MainApplicationWindow extends ApplicationWindow {
@@ -47,17 +46,6 @@ public class MainApplicationWindow extends ApplicationWindow {
 	protected StatusLineManager createStatusLineManager() {
 		StatusLineManager statusLineManager = new StatusLineManager();
 		return statusLineManager;
-	}
-
-	public static void main(String args[]) {
-		try {
-			MainApplicationWindow window = new MainApplicationWindow();
-			window.setBlockOnOpen(true);
-			window.open();
-			Display.getCurrent().dispose();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override

@@ -1,13 +1,21 @@
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: "eclipse"
-
+// 主仓库
 repositories {
     jcenter()
-    maven {url 'repo'}
+    maven { url 'repo' }
 }
 
-String swtGroupId='org.eclipse.swt', swtVersion='3.7.2'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.edu.sc.seis.gradle:launch4j:2.3.0"
+    }
+}
+
+String swtGroupId = 'org.eclipse.swt', swtVersion = '3.7.2'
 def osDependencies = []
 if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
 
@@ -15,26 +23,28 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
     String arch = System.getenv("PROCESSOR_ARCHITECTURE")
     String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432")
     String is64Arch = (arch != null && arch.endsWith("64")) \
-                   || (wow64Arch != null && wow64Arch.endsWith("64")) ? "64" : "32"
+                                       || (wow64Arch != null && wow64Arch.endsWith("64")) ? "64" : "32"
 
-    if(is64Arch) {
-        osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
-    }
-    else {
-        osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
+    if (is64Arch) {
+        osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
+    } else {
+        osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
     }
 
 } else {
 
     // 全部编译
-    osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
-    osDependencies<<String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
+    osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
+    osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
 }
 
-
+////// -----------------------Java编译依赖配置开始 ---------------------------//////////
+apply plugin: 'java'
 dependencies {
     // The production code uses Guava
     compile 'com.google.guava:guava:20.0'
+
+    compileOnly "org.projectlombok:lombok:1.12.6"
 
     // 系统相关的依赖
     compile osDependencies
@@ -51,17 +61,73 @@ dependencies {
     compile files('lib/org.eclipse.core.databinding.property_1.4.0.I20110222-0800.jar')
     compile files('lib/org.eclipse.jface.databinding_1.5.0.I20100907-0800.jar')
 
+    // 配置Log4j
+    String LOG4J_VERSION = '2.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J_VERSION
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: LOG4J_VERSION
+
+    // 配置Spring
+    String SPRING_VERSION = '4.3.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: SPRING_VERSION
+
+    // 配置数据库
+    compile group: 'org.springframework', name: 'spring-jdbc', version: SPRING_VERSION
 
     // 测试用框架
     testCompile 'junit:junit:4.12'
 }
 
 compileJava {
-  sourceCompatibility = '1.8'
-  targetCompatibility = '1.8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
 }
 
-build{
-    mainClassName = "com.aiziyuer.app.CoreApplication"
-    applicationDefaultJvmArgs = ["-Dgreeting.language=en"]
+////// -----------------------Java编译依赖配置开始 ---------------------------//////////
+
+///// ------------------------打包配置开始---------------------------------///////
+apply plugin: "edu.sc.seis.launch4j"
+
+String APP_NAME = 'EtcdSprite'
+String PACKAGE_DIR = String.format("%s/%s", buildDir, APP_NAME)
+
+task copyStaticFile(type: Copy) {
+
+    copy {
+        // 拷贝图标
+        from 'icons/etcd-seeklogo.com.ico'
+        into PACKAGE_DIR + '/icons'
+        rename { fileName -> APP_NAME + '.ico' }
+    }
+
+    copy {
+        // 拷贝配置文件
+        from 'config/log4j2.xml'
+        into PACKAGE_DIR + '/config'
+    }
+
+    copy {
+        // 拷贝应用配置文件
+        from 'config/template.l4j.ini'
+        into PACKAGE_DIR
+        rename { fileName -> APP_NAME + '.l4j.ini' }
+    }
+
+    copy {
+        // 配置Spring文件
+        from 'config/spring'
+        into PACKAGE_DIR + '/config/spring'
+    }
 }
+
+tasks.createExe.dependsOn('copyStaticFile')
+
+launch4j {
+    outputDir = APP_NAME
+    mainClassName = "com.aiziyuer.app.CoreApplication"
+    icon = String.format("%s/icons/%s.ico", PACKAGE_DIR, APP_NAME)
+}
+///// ------------------------打包配置开始---------------------------------///////
+
+
+apply plugin: "eclipse"
