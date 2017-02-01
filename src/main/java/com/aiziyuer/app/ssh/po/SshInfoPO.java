@@ -1,12 +1,14 @@
 package com.aiziyuer.app.ssh.po;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "SSH_INFO")
+@ToString
 public class SshInfoPO {
 
     @Id

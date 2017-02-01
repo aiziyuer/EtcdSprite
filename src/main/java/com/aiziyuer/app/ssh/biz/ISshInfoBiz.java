@@ -1,5 +1,7 @@
 package com.aiziyuer.app.ssh.biz;
 
+import java.util.List;
+
 import com.aiziyuer.app.ssh.bo.SshInfoBO;
 
 public interface ISshInfoBiz {
@@ -9,6 +11,6 @@ public interface ISshInfoBiz {
 	 * 
 	 * @return 返回所有的连接信息
 	 */
-	SshInfoBO listSshInfoBos();
+	List<SshInfoBO> listSshInfoBOs();
 
 }

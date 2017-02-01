@@ -1,5 +1,7 @@
 package com.aiziyuer.app.ssh.dao;
 
+import java.util.List;
+
 import com.aiziyuer.app.ssh.po.SshInfoPO;
 
 public interface ISshInfoDAO {
@@ -8,5 +10,5 @@ public interface ISshInfoDAO {
 	 * 
 	 * @return 返回所有的连接信息
 	 */
-	SshInfoPO listSshInfoBos();
+	List<SshInfoPO> listSshInfoPos();
 }

@@ -1,8 +1,10 @@
 package com.aiziyuer.app.ssh.bo;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class SshInfoBO {
 
 	/** 目标主机 */

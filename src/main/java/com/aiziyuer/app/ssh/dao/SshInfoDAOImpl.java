@@ -1,44 +1,34 @@
 package com.aiziyuer.app.ssh.dao;
 
-import com.aiziyuer.app.ssh.po.SshInfoPO;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import com.aiziyuer.app.ssh.po.SshInfoPO;
 
-@Log4j2
-@Transactional
+import lombok.Setter;
+
 public class SshInfoDAOImpl implements ISshInfoDAO {
 
-    @Setter
-    JdbcTemplate jdbcTemplate;
+	@Setter
+	JdbcTemplate jdbcTemplate;
 
-    @Setter
-    NamedParameterJdbcTemplate namedTemplate;
+	@Setter
+	NamedParameterJdbcTemplate namedTemplate;
 
-    @Setter
-    private SessionFactory sessionFactory;
+	@Setter
+	private SessionFactory sessionFactory;
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public SshInfoPO listSshInfoBos() {
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SshInfoPO> listSshInfoPos() {
 
-        Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 
-        List<SshInfoPO> sshInfoPOList = session.createQuery("from SshInfoPO").list();
-        for (SshInfoPO sshInfoPO : sshInfoPOList) {
-            System.out.println(sshInfoPO);
-        }
-
-        log.info("listSshInfoBos");
-
-
-        return null;
-    }
+		return session.createQuery("from SshInfoPO").list();
+	}
 
 }
