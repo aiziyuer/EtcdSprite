@@ -1,12 +1,15 @@
 package com.aiziyuer.app;
 
-import com.aiziyuer.app.framework.util.ServiceLocator;
-import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
-import lombok.extern.log4j.Log4j2;
+import java.nio.file.Paths;
+
 import org.eclipse.swt.widgets.Display;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import java.nio.file.Paths;
+import com.aiziyuer.app.framework.util.ServiceLocator;
+import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
+import com.aiziyuer.app.ui.MainApplicationWindow;
+
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class CoreApplication {
@@ -29,7 +32,6 @@ public class CoreApplication {
 
 			MainApplicationWindow window = new MainApplicationWindow();
 
-			window.setBlockOnOpen(true);
 			window.open();
 			Display.getCurrent().dispose();
 

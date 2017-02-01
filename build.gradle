@@ -49,12 +49,13 @@ dependencies {
 
     // 系统相关的依赖
     compile osDependencies
-
-    // databing相关的几个类库
+    
+    // JFace类库
     compile 'org.eclipse.jface:org.eclipse.jface:3.7.0.v20110928-1505'
     compile 'org.eclipse.core:org.eclipse.core.commands:3.6.0.I20110111-0800'
     compile 'org.eclipse.osgi:org.eclipse.osgi:3.7.2.v20120110-1415'
 
+    // databing相关的几个类库
     compile files('lib/com.ibm.icu_4.4.2.v20110823.jar')
     compile files('lib/org.eclipse.core.databinding_1.4.0.I20110111-0800.jar')
     compile files('lib/org.eclipse.core.databinding.beans_1.2.100.I20100824-0800.jar')
@@ -62,6 +63,12 @@ dependencies {
     compile files('lib/org.eclipse.core.databinding.property_1.4.0.I20110222-0800.jar')
     compile files('lib/org.eclipse.jface.databinding_1.5.0.I20100907-0800.jar')
 
+    // xwt类库
+    compile files('lib/org.eclipse.e4.xwt_0.9.1.SNAPSHOT.jar')
+    compile files('lib/org.eclipse.e4.xwt.forms_0.9.1.SNAPSHOT.jar')
+    compile files('lib/org.pushingpixels.trident_1.2.0.v20100204-1500.jar')
+    
+    
     // 配置Log4j
     String LOG4J_VERSION = '2.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J_VERSION
