@@ -1,14 +1,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/task
 	http://www.springframework.org/schema/task/spring-task.xsd">
 
 	<!--全局的Spring工具类 -->
 	<bean id="serviceLocator" class="com.aiziyuer.app.framework.util.ServiceLocator"
 		lazy-init="false" />
-
 
 	<!--自定义线程池 -->
 	<task:executor id="myExecutor" pool-size="5" />
@@ -17,7 +19,7 @@
 		scheduler="myScheduler" />
 
 	<!-- 配置文件目录映射 -->
-	<bean id="CONFIG_DIR_MAP" class="java.util.HashMap">
+	<bean id="configDirMap" class="java.util.HashMap">
 		<constructor-arg>
 			<map>
 				<!-- 界面的布局文件目录 -->
@@ -38,9 +40,10 @@
 
 	<!-- 入口类 -->
 	<bean id="coreApplication" class="com.aiziyuer.app.CoreApplication">
-		<property name="xwtFileMap" ref="xwtFileMap" />
+		<property name="xwtFilePath" value="#{xwtFileMap.mainUI}" />
 	</bean>
 
 	<!--脚本刷新经常导致进程重启挂死，暂时注释脚本 -->
 	<!--<import resource="applicationContext-scripts.xml"/> -->
+
 </beans>

@@ -1,7 +1,6 @@
 package com.aiziyuer.app;
 
 import java.nio.file.Paths;
-import java.util.Map;
 
 import org.eclipse.e4.xwt.XWT;
 import org.eclipse.swt.graphics.Rectangle;
@@ -24,7 +23,7 @@ public class CoreApplication {
 	}
 
 	@Setter
-	private Map<String, String> xwtFileMap;
+	private String xwtFilePath;
 
 	private void centerInDisplay(Shell shell) {
 		Rectangle displayArea = shell.getDisplay().getClientArea();
@@ -35,8 +34,7 @@ public class CoreApplication {
 	private void run() {
 		try {
 
-			Shell shell = XWT
-					.load(Paths.get(xwtFileMap.get("mainUI")).toUri().toURL())
+			Shell shell = XWT.load(Paths.get(xwtFilePath).toUri().toURL())
 					.getShell();
 
 			shell.layout();
