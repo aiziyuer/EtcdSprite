@@ -1,0 +1,8 @@
+<Shell xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	x:ClassFactory="com.aiziyuer.app.framework.util.ServiceLocator.instance bean=mainUI"
+	text="XWT Application">
+	<Shell.layout>
+		<RowLayout />
+	</Shell.layout>
+	<Button text="Double click me!" />
+</Shell>

@@ -1,9 +1,10 @@
 package com.aiziyuer.app.framework.util;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 服务发现类
@@ -11,34 +12,37 @@ import org.springframework.beans.factory.BeanFactoryAware;
 @Log4j2
 public class ServiceLocator implements BeanFactoryAware {
 
-    private static BeanFactory beanFactory;
-    private static ServiceLocator servlocator;
+	private static BeanFactory beanFactory;
 
-    private ServiceLocator() {
-    }
+	private static ServiceLocator servlocator;
 
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+	private ServiceLocator() {
+	}
 
-        log.info("spring setBeanFactory");
+	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 
-        ServiceLocator.beanFactory = beanFactory;
-    }
+		log.info("spring setBeanFactory");
 
-    public static synchronized ServiceLocator getInstance() {
+		ServiceLocator.beanFactory = beanFactory;
+	}
 
-        if (servlocator == null)
-            servlocator = (ServiceLocator) beanFactory.getBean("serviceLocator");
+	public static synchronized ServiceLocator getInstance() {
 
-        return servlocator;
-    }
+		if (servlocator == null)
+			servlocator = (ServiceLocator) beanFactory
+					.getBean("serviceLocator");
 
-    /**
-     * 根据提供的bean名称得到相应的服务类
-     *
-     * @param beanName bean名称
-     */
-    @SuppressWarnings("unchecked")
-    public <T> T getService(String beanName) {
-        return (T) beanFactory.getBean(beanName);
-    }
+		return servlocator;
+	}
+
+	/**
+	 * 根据提供的bean名称得到相应的服务类
+	 *
+	 * @param beanName
+	 *            bean名称
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T getBean(String beanName) {
+		return (T) beanFactory.getBean(beanName);
+	}
 }

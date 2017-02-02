@@ -1,14 +1,17 @@
 package com.aiziyuer.app;
 
 import java.nio.file.Paths;
+import java.util.Map;
 
+import org.eclipse.e4.xwt.XWT;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.aiziyuer.app.framework.util.ServiceLocator;
-import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
-import com.aiziyuer.app.ui.MainApplicationWindow;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -16,28 +19,49 @@ public class CoreApplication {
 
 	static {
 		new FileSystemXmlApplicationContext(
-				Paths.get(System.getProperty("config.path"),
+				Paths.get(System.getProperty("spring.config.path"),
 						"applicationContext.xml").toString());
+	}
+
+	@Setter
+	private Map<String, String> xwtFileMap;
+
+	private void centerInDisplay(Shell shell) {
+		Rectangle displayArea = shell.getDisplay().getClientArea();
+		shell.setBounds(displayArea.width / 4, displayArea.height / 4,
+				displayArea.width / 2, displayArea.height / 2);
+	}
+
+	private void run() {
+		try {
+
+			Shell shell = XWT
+					.load(Paths.get(xwtFileMap.get("mainUI")).toUri().toURL())
+					.getShell();
+
+			shell.layout();
+			centerInDisplay(shell);
+
+			shell.open();
+			while (!shell.isDisposed()) {
+				if (!shell.getDisplay().readAndDispatch())
+					shell.getDisplay().sleep();
+			}
+
+		} catch (Exception e) {
+			log.error("System has error:", e);
+		} finally {
+			Display.getCurrent().dispose();
+		}
 	}
 
 	public static void main(String[] args) {
 
 		log.info("start gui start.");
 
-		try {
-
-			ISshInfoBiz sshInfoBiz = ServiceLocator.getInstance()
-					.getService("sshInfoBiz");
-			log.info(sshInfoBiz.listSshInfoBOs());
-
-			MainApplicationWindow window = new MainApplicationWindow();
-
-			window.open();
-			Display.getCurrent().dispose();
-
-		} catch (Exception e) {
-			log.error("System has error:", e);
-		}
+		CoreApplication app = ServiceLocator.getInstance()
+				.getBean("coreApplication");
+		app.run();
 
 		log.info("start gui end.");
 	}
