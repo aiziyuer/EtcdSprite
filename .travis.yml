@@ -11,10 +11,12 @@ sudo: required
 before_script:
 - sudo apt-get update
 - sudo apt-get install lib32z1 lib32ncurses5
-#before_install:
-#- chmod +x gradlew
+before_install:
+- chmod +x gradlew
+after_install:
+- chmod -x gradlew
 script:
-- "sh ./gradlew zipDist"
+- "./gradlew zipDist"
 deploy:
   provider: releases
   api_key:
