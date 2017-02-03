@@ -13,8 +13,8 @@ before_script:
 - sudo apt-get install lib32z1 lib32ncurses5
 before_install:
 - chmod +x gradlew
-after_install:
-- chmod -x gradlew
+before_deploy:
+- git checkout gradlew -f
 script:
 - "./gradlew zipDist"
 deploy:
