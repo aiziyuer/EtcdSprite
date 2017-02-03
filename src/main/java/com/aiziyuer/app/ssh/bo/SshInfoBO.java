@@ -11,10 +11,10 @@ public class SshInfoBO {
 	private String host;
 
 	/** 连接用户名 */
-	private String name;
+	private String userName;
 
 	/** 连接用密码 */
-	private String password;
+	private String userPassword;
 
 	/** 隧道入口 */
 	private String entryTunnelPort;
