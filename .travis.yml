@@ -21,6 +21,6 @@ deploy:
   provider: releases
   api_key:
     secure: MDPuiyqOJb6eO6WHZyEIw64WhHjwugjG3AEEa8gex00Z7aQMBh/wdA+Hq+FBZBI+VUATC89q8LLKIyrO+bIA4S8JSWAdppyj2R7Dd02hDHJ/l8RjJ/wDDzSwC4xlGeu6+ZxE5bNb+HpRz9WEaYO8U6ZuFH4P4cnsQuA8HPoKsyC7TNaJB0h+Cbdo069TnwR8D4kOi4U586/LJzwNP7aD2t8uBf9CbNL8k3BuLNCeACjgKI83q71BAUmOgEGM59zP0r7x0MNTLIgMDrT07X0oJ7dD3P8CBv08wBrhBbmixSpBeJztjGtFXkZg+udV4ZTmPJx+TcsTS848RclQGl+SY6JHSh17G19eLOYe69ySqeFlr3LPofiKs4YbyyMcyRl7ch9Qa69OEPXsCxMhX/hTyMZ4AFxxy1zO5ObEStfz4ofYto0J2pGtBATKcnVTgVvXsjsf9jH1dYVBD2BSeA+nIHr4843TkhkPGF7P2GOYKdPvDBxQJzxSpO+URyd/KiL3Edpl2S1FOAXd0qj+PKZeXQkyDzwTDjr//arCRkMvO8JfcPMFlrOdvDMmP/Y0Gx1GAKg6ZIJAyNoJp4ippIx9gk9r0/Q6LIvsc4blW+nBw4eFbD2CrdYg+ghrxGWCL+MXje0fDZgcacVJuOhXMTwMUwymg+I55vMPdQsO8lrEVeY=
-  file: EtcdSprite/build/distributions/EtcdSprite.zip
+  file: build/distributions/EtcdSprite.zip
   on:
     repo: aiziyuer/EtcdSprite
