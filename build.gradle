@@ -19,15 +19,22 @@ String swtGroupId = 'org.eclipse.swt', swtVersion = '3.7.2'
 def osDependencies = []
 if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
 
+    println System.properties['os.arch']
+    println System.properties['sun.arch.data.model']
+
     // 区分32位和64位
     String arch = System.getenv("PROCESSOR_ARCHITECTURE")
     String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432")
-    String is64Arch = (arch != null && arch.endsWith("64")) \
-                                           || (wow64Arch != null && wow64Arch.endsWith("64")) ? "64" : "32"
+    Boolean is64Arch = (arch && arch.endsWith("64")) \
+                          || (wow64Arch && wow64Arch.endsWith("64"))
 
+    // 这里除了需要看系统外, 还需要看jvm是否是64的, 防止32位启动64无法正常运行
+    String jvmArch = System.properties['sun.arch.data.model']
+    is64Arch =is64Arch && jvmArch && jvmArch.endsWith("64")
+	
     if (is64Arch) {
         osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
-    } else {
+    } else{
         osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
     }
 
