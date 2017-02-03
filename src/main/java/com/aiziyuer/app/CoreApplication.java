@@ -27,7 +27,7 @@ public class CoreApplication {
 	}
 
 	private void centerInDisplay(Shell shell) {
-		Rectangle displayArea = shell.getDisplay().getClientArea();
+		Rectangle displayArea = shell.getDisplay().getPrimaryMonitor().getClientArea();
 		shell.setBounds(displayArea.width / 4, displayArea.height / 4,
 				displayArea.width / 2, displayArea.height / 2);
 	}
