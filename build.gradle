@@ -26,15 +26,15 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
     String arch = System.getenv("PROCESSOR_ARCHITECTURE")
     String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432")
     Boolean is64Arch = (arch && arch.endsWith("64")) \
-                          || (wow64Arch && wow64Arch.endsWith("64"))
+                             || (wow64Arch && wow64Arch.endsWith("64"))
 
     // 这里除了需要看系统外, 还需要看jvm是否是64的, 防止32位启动64无法正常运行
     String jvmArch = System.properties['sun.arch.data.model']
-    is64Arch =is64Arch && jvmArch && jvmArch.endsWith("64")
-	
+    is64Arch = is64Arch && jvmArch && jvmArch.endsWith("64")
+
     if (is64Arch) {
         osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86_64', swtVersion)
-    } else{
+    } else {
         osDependencies << String.format("%s:%s:%s", swtGroupId, 'org.eclipse.swt.win32.win32.x86', swtVersion)
     }
 
@@ -48,6 +48,25 @@ if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
 ////// -----------------------Java编译依赖配置开始 ---------------------------//////////
 apply plugin: 'java'
 
+// 显示定义工程源码结构
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/java"]
+            includes = ["**/*.xwt"]
+        }
+    }
+    test {
+        java {
+            srcDirs = ["src/test/java"]
+        }
+    }
+}
+
+
 dependencies {
     // The production code uses Guava
     compile 'com.google.guava:guava:20.0'
@@ -56,7 +75,7 @@ dependencies {
 
     // 系统相关的依赖
     compile osDependencies
-    
+
     // JFace类库
     compile 'org.eclipse.jface:org.eclipse.jface:3.7.0.v20110928-1505'
     compile 'org.eclipse.core:org.eclipse.core.commands:3.6.0.I20110111-0800'
@@ -74,8 +93,7 @@ dependencies {
     compile files('lib/org.eclipse.e4.xwt_0.9.1.SNAPSHOT.jar')
     compile files('lib/org.eclipse.e4.xwt.forms_0.9.1.SNAPSHOT.jar')
     compile files('lib/org.pushingpixels.trident_1.2.0.v20100204-1500.jar')
-    
-    
+
     // 配置Log4j
     String LOG4J_VERSION = '2.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J_VERSION
@@ -101,7 +119,6 @@ dependencies {
 
     // 通用工具包
     compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.8.3'
-
 
     // 测试用框架
     testCompile 'junit:junit:4.12'
@@ -164,6 +181,3 @@ launch4j {
     icon = String.format("%s/icons/%s.ico", PACKAGE_DIR, APP_NAME)
 }
 ///// ------------------------打包配置开始---------------------------------///////
-
-
-apply plugin: "eclipse"
