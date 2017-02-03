@@ -11,7 +11,10 @@ cache:
 notifications:      # 每次构建的时候是否通知
   email: true
 
-sudo: false         # 开启基于容器的Travis CI任务，让编译效率更高。
+sudo: required
+before_script:
+  - sudo apt-get update
+  - sudo apt-get install lib32z1 lib32ncurses5
 
 before_install:
  - chmod +x gradlew  # 改变gradlew的访问权限
