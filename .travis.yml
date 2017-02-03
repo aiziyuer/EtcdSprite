@@ -1,34 +1,22 @@
-language: groovy # 声明构建语言环境
-
+language: groovy
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
-notifications:      # 每次构建的时候是否通知
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+notifications:
   email: true
-
 sudo: required
 before_script:
-  - sudo apt-get update
-  - sudo apt-get install lib32z1 lib32ncurses5
-
+- sudo apt-get update
+- sudo apt-get install lib32z1 lib32ncurses5
 before_install:
- - chmod +x gradlew  # 改变gradlew的访问权限
-
-script:              # 执行:下面的命令
-  - ./gradlew zipDist
-
-#before_deploy:       # 部署之前
-  # 使用 mv 命令进行修改apk文件的名字
-#  - mv app/build/outputs/apk/app-release.apk app/build/outputs/apk/buff.apk
-
-deploy:              # 部署
-  provider: releases # 部署到GitHub Release
-  file: EtcdSprite/build/distributions/EtcdSprite.zip # 部署文件路径
-#  skip_cleanup: true     # 设置为true以跳过清理,不然apk文件就会被清理
-#  on:     # 发布时机
-#    tags: true       # tags设置为true表示只有在有tag的情况下才部署
+- chmod +x gradlew
+script:
+- "./gradlew zipDist"
+deploy:
+  provider: releases
+  file: EtcdSprite/build/distributions/EtcdSprite.zip
+dd:
+  secure: JNMnoT5T4V8z+RjeM15YCuPthT+oFZDMENTmCY+DL+eTiIhoUfXzojVZ7WuKXPoaYMQHxYFqft2zxnDQovPhxdBIkGQfBDVo5ayQ5mRiTqrrXl7rE3wsXpaML7Q1rLxKy2gXaD571C2bcaVtUV8zYPbiiNQIOTXQVT/V3mAS1rzMkOZNTzvi0mckzDuXmq+Kg/CT8w1F8Ybs64zc/zxS0a4vsbbI3AzS9uCMO/zWJbB3wUD0iIg1NOESMt3AkK0E1bWrnDAHbTPxz37C1sl2ySA8aSuwLaEaUmFo+X18m6hqR1gkDNT5+m6jrjZWwfdK/t0OwNyU1/YWwrIwDKHgX/QU8poU6hXUU8A7O8BbbiV4baz7Jdq2x0gO6K0ZdFqeOhdbtUQ6PFBnhw8UA4hSBkOK1kiuGJu8dYkARHObVPKdyk0PrfRAlfiOHCJ764XLPanhnIwYLe0YBv2eXsppcbpIk7zEhYQ0CnmGuECgvb7ImOP/bvdbdmEZmxA7PNDBE0+hfLlf9WdTcJSrLuaPP48eieJif2iwl1H02XRriFY3Jdk5FXk2X2LHq+1REvtirmOnmnK4KjMj2aiJnLiXlJxDAo0juerD54fEQqsZqkpr/a7y7MJ4I8U9M3MZROResyp71Qv/YGdZAUqu6JhbX1zaZKeH5StBQL+G2RHJ748=
