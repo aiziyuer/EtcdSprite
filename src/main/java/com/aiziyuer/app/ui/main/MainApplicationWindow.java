@@ -1,4 +1,4 @@
-package com.aiziyuer.app.ui;
+package com.aiziyuer.app.ui.main;
 
 import java.util.List;
 

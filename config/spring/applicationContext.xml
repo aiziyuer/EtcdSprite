@@ -18,30 +18,14 @@
 	<task:annotation-driven executor="myExecutor"
 		scheduler="myScheduler" />
 
-	<!-- 配置文件目录映射 -->
-	<bean id="configDirMap" class="java.util.HashMap">
-		<constructor-arg>
-			<map>
-				<!-- 界面的布局文件目录 -->
-				<entry key="ui"
-					value="#{systemProperties['ui.config.path']?:'config/ui'}" />
-			</map>
-		</constructor-arg>
-	</bean>
-
 	<!-- 数据库作为基础的需要先包含 -->
 	<import resource="applicationContext-jdbc.xml" />
 
 	<!-- 业务的配置 -->
 	<import resource="applicationContext-ssh.xml" />
 
-	<!-- 界面依赖业务的注入 -->
-	<import resource="applicationContext-ui.xml" />
-
 	<!-- 入口类 -->
-	<bean id="coreApplication" class="com.aiziyuer.app.CoreApplication">
-		<property name="xwtFilePath" value="#{xwtFileMap.mainUI}" />
-	</bean>
+	<bean id="coreApplication" class="com.aiziyuer.app.CoreApplication" />
 
 	<!--脚本刷新经常导致进程重启挂死，暂时注释脚本 -->
 	<!--<import resource="applicationContext-scripts.xml"/> -->

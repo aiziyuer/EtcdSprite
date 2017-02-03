@@ -1,5 +1,5 @@
 <Shell xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:j="clr-namespace:org.eclipse.e4.xwt.jface" x:Class="com.aiziyuer.app.ui.MainApplicationWindow"
+	xmlns:j="clr-namespace:org.eclipse.e4.xwt.jface" x:Class="com.aiziyuer.app.ui.main.MainApplicationWindow"
 	text="EtcdSprite">
 	<Shell.layout>
 		<FillLayout />
@@ -48,23 +48,23 @@
 				<Composite.layout>
 					<FillLayout />
 				</Composite.layout>
-				<TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sshInfoBOs"
-					input="{Binding path=sshInfoBOs">
-					<TableViewer.table headerVisible="true"
-						linesVisible="true" />
-					<TableViewer.columns>
-						<TableViewerColumn width="100" text="Host"
-							property="host" />
-						<TableViewerColumn width="100" text="Name"
-							property="name" />
-					</TableViewer.columns>
-					<TableViewer.contentProvider>
-						<ObservableListContentProvider />
-					</TableViewer.contentProvider>
-					<TableViewer.labelProvider>
-						<j:DefaultViewerLabelProvider />
-					</TableViewer.labelProvider>
-				</TableViewer>
+				<!-- <TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sshInfoBOs" -->
+				<!-- input="{Binding path=sshInfoBOs"> -->
+				<!-- <TableViewer.table headerVisible="true" -->
+				<!-- linesVisible="true" /> -->
+				<!-- <TableViewer.columns> -->
+				<!-- <TableViewerColumn width="100" text="Host" -->
+				<!-- property="host" /> -->
+				<!-- <TableViewerColumn width="100" text="Name" -->
+				<!-- property="name" /> -->
+				<!-- </TableViewer.columns> -->
+				<!-- <TableViewer.contentProvider> -->
+				<!-- <ObservableListContentProvider /> -->
+				<!-- </TableViewer.contentProvider> -->
+				<!-- <TableViewer.labelProvider> -->
+				<!-- <j:DefaultViewerLabelProvider /> -->
+				<!-- </TableViewer.labelProvider> -->
+				<!-- </TableViewer> -->
 
 			</Composite>
 		</SashForm>

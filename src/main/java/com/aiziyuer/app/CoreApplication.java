@@ -1,7 +1,11 @@
 package com.aiziyuer.app;
 
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.eclipse.e4.xwt.IConstants;
+import org.eclipse.e4.xwt.IXWTLoader;
 import org.eclipse.e4.xwt.XWT;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -9,8 +13,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.aiziyuer.app.framework.util.ServiceLocator;
+import com.aiziyuer.app.ui.main.MainApplicationWindow;
 
-import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -22,9 +26,6 @@ public class CoreApplication {
 						"applicationContext.xml").toString());
 	}
 
-	@Setter
-	private String xwtFilePath;
-
 	private void centerInDisplay(Shell shell) {
 		Rectangle displayArea = shell.getDisplay().getClientArea();
 		shell.setBounds(displayArea.width / 4, displayArea.height / 4,
@@ -34,7 +35,16 @@ public class CoreApplication {
 	private void run() {
 		try {
 
-			Shell shell = XWT.load(Paths.get(xwtFilePath).toUri().toURL())
+			Map<String, Object> options = new HashMap<String, Object>();
+			options.put(IXWTLoader.CLASS_PROPERTY, this);
+			options.put(IXWTLoader.CONTAINER_PROPERTY, null);
+
+			Shell shell = XWT
+					.loadWithOptions(
+							MainApplicationWindow.class.getResource(
+									MainApplicationWindow.class.getSimpleName()
+											+ IConstants.XWT_EXTENSION_SUFFIX),
+							options)
 					.getShell();
 
 			shell.layout();
