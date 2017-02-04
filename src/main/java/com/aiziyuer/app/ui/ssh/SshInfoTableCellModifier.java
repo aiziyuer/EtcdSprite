@@ -1,12 +1,11 @@
 package com.aiziyuer.app.ui.ssh;
 
-import lombok.Getter;
-import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 
-import java.lang.reflect.Field;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 
 
 /**
