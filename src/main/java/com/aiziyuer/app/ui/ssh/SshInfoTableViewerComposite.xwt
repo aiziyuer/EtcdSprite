@@ -1,24 +1,33 @@
 <Composite xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:m="clr-namespace:com.aiziyuer.app.ui.ssh" xmlns:j="clr-namespace:org.eclipse.e4.xwt.jface"
-	xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.SshInfoTableViewerComposite">
-	<Composite.layout>
-		<FillLayout />
-	</Composite.layout>
-	<TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sshInfoBOs"
-		input="{Binding path=sshInfoBOs}">
-		<TableViewer.table headerVisible="true"
-			linesVisible="true" />
-		<TableViewer.columns>
-			<TableViewerColumn width="100" text="Host"
-				property="host" />
-			<TableViewerColumn width="100" text="Name"
-				property="name" />
-		</TableViewer.columns>
-		<TableViewer.contentProvider>
-			<ObservableListContentProvider />
-		</TableViewer.contentProvider>
-		<TableViewer.labelProvider>
-			<m:SshInfoTableLabelProvider />
-		</TableViewer.labelProvider>
-	</TableViewer>
+           xmlns:m="clr-namespace:com.aiziyuer.app.ui.ssh" xmlns:j="clr-namespace:java.lang"
+           xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.SshInfoTableViewerComposite">
+    <Composite.layout>
+        <FillLayout/>
+    </Composite.layout>
+    <TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sshInfoBOs"
+                 input="{Binding path=sshInfoBOs}">
+        <TableViewer.table headerVisible="true"
+                           linesVisible="true"/>
+        <TableViewer.columns>
+            <TableViewerColumn width="100" text="Host"/>
+            <TableViewerColumn width="100" text="Name"/>
+        </TableViewer.columns>
+        <TableViewer.cellEditors>
+            <TextCellEditor/>
+            <TextCellEditor/>
+        </TableViewer.cellEditors>
+        <TableViewer.columnProperties>
+            <j:String>host</j:String>
+            <j:String>name</j:String>
+        </TableViewer.columnProperties>
+        <TableViewer.cellModifier>
+            <m:SshInfoTableCellModifier/>
+        </TableViewer.cellModifier>
+        <TableViewer.contentProvider>
+            <ObservableListContentProvider/>
+        </TableViewer.contentProvider>
+        <TableViewer.labelProvider>
+            <m:SshInfoTableLabelProvider/>
+        </TableViewer.labelProvider>
+    </TableViewer>
 </Composite>
