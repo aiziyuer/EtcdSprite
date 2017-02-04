@@ -9,7 +9,6 @@ import org.eclipse.e4.xwt.DefaultLoadingContext;
 import org.eclipse.e4.xwt.IConstants;
 import org.eclipse.e4.xwt.IXWTLoader;
 import org.eclipse.e4.xwt.XWT;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
