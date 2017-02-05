@@ -54,6 +54,8 @@ public class SshInfoTableCellModifier implements ICellModifier {
 			if (index != ArrayUtils.INDEX_NOT_FOUND) {
 				item.setText(index, String.valueOf(value));
 			}
+			
+			tv.refresh();
 		} catch (IllegalAccessException e) {
 			log.error(e);
 		}
