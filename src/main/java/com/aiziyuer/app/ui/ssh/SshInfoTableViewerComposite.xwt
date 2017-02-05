@@ -18,7 +18,7 @@
         </TableViewer.cellEditors>
         <TableViewer.columnProperties>
             <j:String>host</j:String>
-            <j:String>name</j:String>
+            <j:String>userName</j:String>
         </TableViewer.columnProperties>
         <TableViewer.cellModifier>
             <m:SshInfoTableCellModifier/>
