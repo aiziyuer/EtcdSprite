@@ -4,9 +4,11 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.e4.xwt.IConstants;
 import org.eclipse.e4.xwt.IXWTLoader;
 import org.eclipse.e4.xwt.XWT;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -27,7 +29,8 @@ public class CoreApplication {
 	}
 
 	private void centerInDisplay(Shell shell) {
-		Rectangle displayArea = shell.getDisplay().getPrimaryMonitor().getClientArea();
+		Rectangle displayArea = shell.getDisplay().getPrimaryMonitor()
+				.getClientArea();
 		shell.setBounds(displayArea.width / 4, displayArea.height / 4,
 				displayArea.width / 2, displayArea.height / 2);
 	}
@@ -67,9 +70,16 @@ public class CoreApplication {
 
 		log.info("start gui start.");
 
-		CoreApplication app = ServiceLocator.getInstance()
-				.getBean("coreApplication");
-		app.run();
+		// 整个UI的操作放在UI的线程中执行, 与Main线程作出区分
+		Realm.runWithDefault(SWTObservables.getRealm(Display.getDefault()),
+				() -> {
+
+					Thread.currentThread().setName("UIThread");
+					CoreApplication app = ServiceLocator.getInstance()
+							.getBean("coreApplication");
+					app.run();
+
+				});
 
 		log.info("start gui end.");
 	}
