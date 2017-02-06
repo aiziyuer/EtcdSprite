@@ -25,6 +25,7 @@ public class SshInfoBizImpl implements ISshInfoBiz {
 		List<SshInfoBO> sshInfoBOs = new ArrayList<SshInfoBO>();
 		for (SshInfoPO sshInfoPO : sshInfoDAO.listSshInfoPos()) {
 			SshInfoBO sshInfoBO = new SshInfoBO();
+			sshInfoBO.addObserver(sshInfoBO);
 			try {
 				BeanUtils.copyProperties(sshInfoBO, sshInfoPO);
 				sshInfoBOs.add(sshInfoBO);
