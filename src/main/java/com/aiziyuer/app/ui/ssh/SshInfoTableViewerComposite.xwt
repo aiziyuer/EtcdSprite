@@ -1,5 +1,5 @@
 <Composite xmlns="http://www.eclipse.org/xwt/presentation"
-           xmlns:m="clr-namespace:com.aiziyuer.app.ui.ssh" xmlns:j="clr-namespace:java.lang"
+           xmlns:m="clr-namespace:com.aiziyuer.app.ui.common" xmlns:j="clr-namespace:java.lang"
            xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.SshInfoTableViewerComposite">
     <Composite.layout>
         <FillLayout/>
@@ -21,13 +21,13 @@
             <j:String>userName</j:String>
         </TableViewer.columnProperties>
         <TableViewer.cellModifier>
-            <m:SshInfoTableCellModifier/>
+            <m:CommonTableCellModifier/>
         </TableViewer.cellModifier>
         <TableViewer.contentProvider>
             <ObservableListContentProvider/>
         </TableViewer.contentProvider>
         <TableViewer.labelProvider>
-            <m:SshInfoTableLabelProvider/>
+            <m:CommonTableLabelProvider/>
         </TableViewer.labelProvider>
     </TableViewer>
 </Composite>

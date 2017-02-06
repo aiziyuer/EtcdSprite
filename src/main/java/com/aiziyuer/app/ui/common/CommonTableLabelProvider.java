@@ -1,15 +1,25 @@
-package com.aiziyuer.app.ui.ssh;
+package com.aiziyuer.app.ui.common;
 
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.graphics.Image;
 
-import com.aiziyuer.app.ssh.bo.SshInfoBO;
-
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class SshInfoTableLabelProvider implements ITableLabelProvider {
+public class CommonTableLabelProvider implements ITableLabelProvider {
+
+	@Getter
+	private TableViewer tv;
+
+	public CommonTableLabelProvider(TableViewer tv) {
+		super();
+
+		this.tv = tv;
+	}
 
 	@Override
 	public void addListener(ILabelProviderListener listener) {
@@ -38,19 +48,12 @@ public class SshInfoTableLabelProvider implements ITableLabelProvider {
 
 		String ret = null;
 
-		if (element instanceof SshInfoBO) {
-			SshInfoBO sshInfoBO = (SshInfoBO) element;
-
-			switch (columnIndex) {
-			case 0:
-				ret = sshInfoBO.getHost();
-				break;
-			case 1:
-				ret = sshInfoBO.getUserName();
-				break;
-			default:
-				break;
-			}
+		try {
+			ret = String.valueOf(FieldUtils.readDeclaredField(element,
+					String.valueOf(tv.getColumnProperties()[columnIndex]),
+					true));
+		} catch (Exception e) {
+			log.error(e);
 		}
 
 		if (ret == null)

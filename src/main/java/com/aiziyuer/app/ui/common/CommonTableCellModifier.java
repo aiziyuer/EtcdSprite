@@ -1,4 +1,4 @@
-package com.aiziyuer.app.ui.ssh;
+package com.aiziyuer.app.ui.common;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -13,12 +13,12 @@ import lombok.extern.log4j.Log4j2;
  *
  */
 @Log4j2
-public class SshInfoTableCellModifier implements ICellModifier {
+public class CommonTableCellModifier implements ICellModifier {
 
 	@Getter
 	private TableViewer tv;
 
-	public SshInfoTableCellModifier(TableViewer tv) {
+	public CommonTableCellModifier(TableViewer tv) {
 		super();
 		this.tv = tv;
 	}
