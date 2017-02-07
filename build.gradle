@@ -70,7 +70,8 @@ dependencies {
     // The production code uses Guava
     compile 'com.google.guava:guava:20.0'
 
-    compileOnly "org.projectlombok:lombok:1.12.6"
+    // 这里的lombok是经过定制的, 里面增强了setterbound的功能
+    compileOnly files('lib/lombok-1.16.12.jar') 
 
     // 系统相关的依赖
     compile osDependencies
