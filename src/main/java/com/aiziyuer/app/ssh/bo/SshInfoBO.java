@@ -1,24 +1,26 @@
 package com.aiziyuer.app.ssh.bo;
 
 import java.io.Serializable;
-import java.util.Observable;
-import java.util.Observer;
+
+import com.aiziyuer.app.framework.common.CommonBO;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Setter;
 import lombok.ToString;
-import lombok.extern.log4j.Log4j2;
+import lombok.experimental.Accessors;
 
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@Log4j2
-public class SshInfoBO extends Observable implements Observer, Serializable {
+public class SshInfoBO extends CommonBO implements Serializable {
 
 	/** 序列化的ID */
 	private static final long serialVersionUID = 1L;
 
 	/** 目标主机 */
+	@Setter
+	@Accessors(bound = true, propertyChangeSupportFieldName = "propertySupport")
 	private String host;
 
 	/** 连接用户名 */
@@ -35,13 +37,4 @@ public class SshInfoBO extends Observable implements Observer, Serializable {
 
 	/** 隧道出口的端口 */
 	private String exportTunnelPort;
-
-	@Override
-	public void update(Observable newObj, Object oldObj) {
-
-		log.info(String.format("newObj:%s", newObj));
-		log.info(String.format("oldObj:%s", oldObj));
-		
-	}
-
 }

@@ -3,7 +3,6 @@ package com.aiziyuer.app.ui.common;
 import java.io.Serializable;
 import java.util.Observable;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.SerializationUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -69,10 +68,10 @@ public class CommonTableCellModifier implements ICellModifier {
 			FieldUtils.writeDeclaredField(data, property, value, true);
 
 			// 修改界面的数据
-			int index = ArrayUtils.indexOf(tv.getColumnProperties(), property);
-			if (index != ArrayUtils.INDEX_NOT_FOUND) {
-				item.setText(index, String.valueOf(value));
-			}
+//			int index = ArrayUtils.indexOf(tv.getColumnProperties(), property);
+//			if (index != ArrayUtils.INDEX_NOT_FOUND) {
+//				item.setText(index, String.valueOf(value));
+//			}
 
 			tv.refresh();
 

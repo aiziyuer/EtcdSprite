@@ -23,11 +23,5 @@
         <TableViewer.cellModifier>
             <m:CommonTableCellModifier/>
         </TableViewer.cellModifier>
-        <TableViewer.contentProvider>
-            <ObservableListContentProvider/>
-        </TableViewer.contentProvider>
-        <TableViewer.labelProvider>
-            <m:CommonTableLabelProvider/>
-        </TableViewer.labelProvider>
     </TableViewer>
 </Composite>
