@@ -194,3 +194,23 @@ task zipDist(type: Zip){
     dependsOn { [ "createExe"] }
 }
 //// -------------------------发布配置结束--------------------------------///////
+
+//// -------------------------IDE支持开始--------------------------------////////
+apply plugin: "eclipse"
+eclipse {
+	classpath {
+	    // 配置下载源码和javadoc
+	    downloadSources = true
+    	downloadJavadoc = true
+	}
+}
+apply plugin: "idea"
+
+idea {
+    module {
+	    // 配置下载源码和javadoc
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+//// -------------------------IDE支持结束--------------------------------////////
