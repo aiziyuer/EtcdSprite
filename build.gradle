@@ -71,7 +71,7 @@ dependencies {
     compile 'com.google.guava:guava:20.0'
 
     // 这里的lombok是经过定制的, 里面增强了setterbound的功能
-    compileOnly files('lib/lombok-1.16.12.jar') 
+    compileOnly 'com.aiziyuer:com.aiziyuer.lombok:1.16.12'
 
     // 系统相关的依赖
     compile osDependencies
@@ -82,17 +82,17 @@ dependencies {
     compile 'org.eclipse.osgi:org.eclipse.osgi:3.7.2.v20120110-1415'
 
     // databing相关的几个类库
-    compile files('lib/com.ibm.icu_4.4.2.v20110823.jar')
-    compile files('lib/org.eclipse.core.databinding_1.4.0.I20110111-0800.jar')
-    compile files('lib/org.eclipse.core.databinding.beans_1.2.100.I20100824-0800.jar')
-    compile files('lib/org.eclipse.core.databinding.observable_1.4.0.I20110222-0800.jar')
-    compile files('lib/org.eclipse.core.databinding.property_1.4.0.I20110222-0800.jar')
-    compile files('lib/org.eclipse.jface.databinding_1.5.0.I20100907-0800.jar')
+    compile 'com.aiziyuer:com.ibm.icu:4.4.2.v20110823'
+    compile 'com.aiziyuer:org.eclipse.core.databinding:1.4.0.I20110111-0800'
+    compile 'com.aiziyuer:org.eclipse.core.databinding.beans:1.2.100.I20100824-0800'
+    compile 'com.aiziyuer:org.eclipse.core.databinding.observable:1.4.0.I20110222-0800'
+    compile 'com.aiziyuer:org.eclipse.core.databinding.property:1.4.0.I20110222-0800'
+    compile 'com.aiziyuer:org.eclipse.jface.databinding:1.5.0.I20100907-0800'
 
     // xwt类库
-    compile files('lib/org.eclipse.e4.xwt_0.9.1.SNAPSHOT.jar')
-    compile files('lib/org.eclipse.e4.xwt.forms_0.9.1.SNAPSHOT.jar')
-    compile files('lib/org.pushingpixels.trident_1.2.0.v20100204-1500.jar')
+    compile 'com.aiziyuer:org.eclipse.e4.xwt:0.9.1.20170208.160755'
+    compile 'com.aiziyuer:org.eclipse.e4.xwt.forms:0.9.1.20170208.160755'
+    compile 'com.aiziyuer:org.pushingpixels.trident:1.2.0.v20100204-1500'
 
     // 配置Log4j
     String LOG4J_VERSION = '2.1'
