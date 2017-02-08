@@ -15,7 +15,7 @@ do
 
 		command="""
 		mvn deploy:deploy-file \
-		    -DgroupId=$groupId \
+		    -DgroupId=com.aiziyuer \
 		    -DartifactId=$artifactId \
 		    -Dversion=$version \
 		    -Dfile=${file}.jar \
