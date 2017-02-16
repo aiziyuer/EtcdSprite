@@ -36,4 +36,24 @@ public class SshInfoBizImpl implements ISshInfoBiz {
 		return sshInfoBOs;
 	}
 
+	/**
+	 * TODO 创建一条正向隧道<br>
+	 * 
+	 * 创建一条隧道(外部可以通过2202访问虚拟机的ssh服务), 使得外部可以访问虚拟机的80端口<br>
+	 * <code>ssh -NfL 80:localhost:80 lc@127.0.0.1 -p 2202</code>
+	 * 
+	 */
+	void createForwardTunnel() {
+
+	}
+
+	/**
+	 * TODO 创建一条反向隧道<br>
+	 * 创建一条反向隧道, 虚拟机可以访问外部的80端口服务<br>
+	 * <code>ssh -NfR 8080:127.0.0.1:80 lc@127.0.0.1 -p 2202</code>
+	 */
+	void craeteReverseTunnel() {
+
+	}
+
 }
