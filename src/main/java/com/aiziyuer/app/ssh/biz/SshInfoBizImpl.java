@@ -1,14 +1,15 @@
 package com.aiziyuer.app.ssh.biz;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.BeanUtils;
 
-import com.aiziyuer.app.ssh.bo.SshInfoBO;
+import com.aiziyuer.app.ssh.bo.SessionInfoBO;
+import com.aiziyuer.app.ssh.bo.TunnelBO;
 import com.aiziyuer.app.ssh.dao.ISshInfoDAO;
-import com.aiziyuer.app.ssh.po.SshInfoPO;
+import com.aiziyuer.app.ssh.po.SessionInfoPO;
+import com.aiziyuer.app.ssh.po.TunnelPO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -20,17 +21,13 @@ public class SshInfoBizImpl implements ISshInfoBiz {
 	private ISshInfoDAO sshInfoDAO;
 
 	@Override
-	public List<SshInfoBO> listSshInfoBOs() {
+	public List<SessionInfoBO> listSessionInfoBOs() {
 
-		List<SshInfoBO> sshInfoBOs = new ArrayList<SshInfoBO>();
-		for (SshInfoPO sshInfoPO : sshInfoDAO.listSshInfoPos()) {
-			SshInfoBO sshInfoBO = new SshInfoBO();
-			try {
-				BeanUtils.copyProperties(sshInfoBO, sshInfoPO);
-				sshInfoBOs.add(sshInfoBO);
-			} catch (IllegalAccessException | InvocationTargetException e) {
-				log.error(e);
-			}
+		List<SessionInfoBO> sshInfoBOs = new ArrayList<SessionInfoBO>();
+		for (SessionInfoPO sshInfoPO : sshInfoDAO.listSshInfoPos()) {
+			SessionInfoBO sshInfoBO = new SessionInfoBO();
+			BeanUtils.copyProperties(sshInfoPO, sshInfoBO);
+			sshInfoBOs.add(sshInfoBO);
 		}
 
 		return sshInfoBOs;
@@ -54,6 +51,42 @@ public class SshInfoBizImpl implements ISshInfoBiz {
 	 */
 	void craeteReverseTunnel() {
 
+	}
+
+	@Override
+	public List<TunnelBO> listTunnelBos(long sessionInfoId) {
+
+		log.info(String.format("sessionInfoId:%d", sessionInfoId));
+
+		return convertTunnelPos2TunnelBos(sshInfoDAO.listTunnelPos(sessionInfoId));
+	}
+
+	@Override
+	public List<TunnelBO> listTunnelBos() {
+		return convertTunnelPos2TunnelBos(sshInfoDAO.listTunnelPos());
+	}
+
+	/**
+	 * 将隧道PO类型转换为隧道BO类型
+	 * 
+	 * @param tunnelPOs
+	 *            隧道PO类型
+	 * @return 隧道信息
+	 */
+	private List<TunnelBO> convertTunnelPos2TunnelBos(List<TunnelPO> tunnelPOs) {
+
+		List<TunnelBO> tunnelBOs = new ArrayList<TunnelBO>();
+
+		for (TunnelPO tunnelPO : tunnelPOs) {
+			TunnelBO tunnelBO = new TunnelBO();
+			SessionInfoBO sessionInfoBO = new SessionInfoBO();
+			tunnelBO.setSessionInfo(sessionInfoBO);
+			BeanUtils.copyProperties(tunnelPO.getSessionInfoPO(), sessionInfoBO);
+			BeanUtils.copyProperties(tunnelPO, tunnelBO);
+			tunnelBOs.add(tunnelBO);
+		}
+
+		return tunnelBOs;
 	}
 
 }
