@@ -2,6 +2,7 @@ package com.aiziyuer.app;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.databinding.observable.Realm;
@@ -16,6 +17,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.aiziyuer.app.framework.util.ServiceLocator;
 import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
+import com.aiziyuer.app.ssh.bo.TunnelBO;
 import com.aiziyuer.app.ui.main.MainApplicationWindow;
 
 import lombok.extern.log4j.Log4j2;
@@ -25,15 +27,12 @@ public class CoreApplication {
 
 	static {
 		new FileSystemXmlApplicationContext(
-				Paths.get(System.getProperty("spring.config.path"),
-						"applicationContext.xml").toString());
+				Paths.get(System.getProperty("spring.config.path"), "applicationContext.xml").toString());
 	}
 
 	private void centerInDisplay(Shell shell) {
-		Rectangle displayArea = shell.getDisplay().getPrimaryMonitor()
-				.getClientArea();
-		shell.setBounds(displayArea.width / 4, displayArea.height / 4,
-				displayArea.width / 2, displayArea.height / 2);
+		Rectangle displayArea = shell.getDisplay().getPrimaryMonitor().getClientArea();
+		shell.setBounds(displayArea.width / 4, displayArea.height / 4, displayArea.width / 2, displayArea.height / 2);
 	}
 
 	private void run() {
@@ -46,8 +45,7 @@ public class CoreApplication {
 			Shell shell = XWT
 					.loadWithOptions(
 							MainApplicationWindow.class.getResource(
-									MainApplicationWindow.class.getSimpleName()
-											+ IConstants.XWT_EXTENSION_SUFFIX),
+									MainApplicationWindow.class.getSimpleName() + IConstants.XWT_EXTENSION_SUFFIX),
 							options)
 					.getShell();
 
@@ -70,20 +68,22 @@ public class CoreApplication {
 	public static void main(String[] args) {
 
 		log.info("start gui start.");
-		
+
 		ISshInfoBiz sshInfoBiz = ServiceLocator.getInstance().getBean("sshInfoBiz");
-		sshInfoBiz.listTunnelBos(1);
+		List<TunnelBO> tunnelBOs = sshInfoBiz.listTunnelBos(1);
+		sshInfoBiz.createTunnels(tunnelBOs);
 
 		// 整个UI的操作放在UI的线程中执行, 与Main线程作出区分
-		Realm.runWithDefault(SWTObservables.getRealm(Display.getDefault()),
-				() -> {
+		Realm.runWithDefault(SWTObservables.getRealm(Display.getDefault()), () -> {
 
-					Thread.currentThread().setName("UIThread");
-					CoreApplication app = ServiceLocator.getInstance()
-							.getBean("coreApplication");
-					app.run();
+			Thread.currentThread().setName("UIThread");
+			CoreApplication app = ServiceLocator.getInstance().getBean("coreApplication");
+			app.run();
 
-				});
+		});
+
+		// 程序结束释放所有的session信息
+		sshInfoBiz.releaseSessions();
 
 		log.info("start gui end.");
 	}

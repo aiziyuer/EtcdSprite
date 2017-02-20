@@ -19,6 +19,10 @@ public class SessionInfoPO {
 	/** 目标主机 */
 	@Column(name = "HOST")
 	private String host;
+	
+	/** 目标主机端口*/
+	@Column(name = "PORT")
+	private int port;
 
 	/** 连接用户名 */
 	@Column(name = "NAME")

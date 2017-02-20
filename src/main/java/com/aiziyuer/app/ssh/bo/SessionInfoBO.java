@@ -16,10 +16,14 @@ public class SessionInfoBO extends CommonBO implements Serializable {
 
 	/** 序列化的ID */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** 目标主机 */
 	@Accessors(bound = true)
 	private String host;
+
+	/** 目标主机端口*/
+	@Accessors(bound = true)
+	private int port = 22;
 
 	/** 连接用户名 */
 	@Accessors(bound = true)
