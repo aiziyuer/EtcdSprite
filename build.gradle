@@ -54,7 +54,7 @@ sourceSets {
             srcDirs = ["src/main/java"]
         }
         resources {
-            srcDirs = ["src/main/java"]
+            srcDirs = ["src/main/resources"]
             includes = ["**/*.xwt"]
         }
     }
