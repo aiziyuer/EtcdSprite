@@ -5,6 +5,7 @@ import org.eclipse.e4.xwt.annotation.UI;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 
 import com.aiziyuer.app.ui.ssh.SshInfoTableViewerManager;
@@ -32,8 +33,8 @@ public class MainApplicationWindow {
 		log.info("onSshTunnelMenuItemSelected");
 
 		// 释放右侧的区域内容
-		// for (Control control : rightContainer.getChildren())
-		// control.dispose();
+		for (Control control : cTabFolder.getChildren())
+			control.dispose();
 
 		SshInfoTableViewerManager manager = new SshInfoTableViewerManager();
 		cTabItem.setControl(manager.buildUI(cTabFolder));
