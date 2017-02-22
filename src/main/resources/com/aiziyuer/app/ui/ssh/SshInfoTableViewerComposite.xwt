@@ -71,9 +71,9 @@
 								horizontalAlignment="FILL" />
 						</Text.layoutData>
 					</Text>
-					<Button text="Add" />
-					<Button text="Edit" />
-					<Button text="Remove" />
+					<Button text="Add" image="icons/add.png" />
+					<Button text="Edit" image="icons/edit.png" />
+					<Button text="Remove" image="icons/delete.png" />
 				</Composite>
 			</Composite>
 			<Composite>
@@ -93,6 +93,18 @@
 					<TableViewerColumn width="120" text="Remote Address" />
 					<TableViewerColumn width="100" text="Remote Port" />
 				</TableViewer>
+			</Composite>
+			<Composite >
+				<Composite.layoutData>
+					<GridData horizontalAlignment="CENTER"/>
+				</Composite.layoutData>
+				<Composite.layout>
+					<FillLayout/>
+				</Composite.layout>
+				<Button text="Connect" image="icons/connect.png"/>
+				<Button text="Disconnect" image="icons/disconnect.png"/>
+				<Button text="Connect All" image="icons/connect_all.png"/>
+				<Button text="Disconnect All" image="icons/disconnect_all.png"/>
 			</Composite>
 		</Group>
 	</SashForm>

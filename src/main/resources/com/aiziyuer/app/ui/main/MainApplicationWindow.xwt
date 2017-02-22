@@ -1,6 +1,6 @@
 <Shell xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:j="clr-namespace:org.eclipse.e4.xwt.jface" x:Class="com.aiziyuer.app.ui.main.MainApplicationWindow"
-	text="EtcdSprite">
+	text="EtcdSprite" image="icons/logo.png">
 	<Shell.layout>
 		<FillLayout />
 	</Shell.layout>
