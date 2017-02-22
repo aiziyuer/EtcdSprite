@@ -1,27 +1,99 @@
 <Composite xmlns="http://www.eclipse.org/xwt/presentation"
-           xmlns:m="clr-namespace:com.aiziyuer.app.ui.common" xmlns:j="clr-namespace:java.lang"
-           xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.SshInfoTableViewerComposite">
-    <Composite.layout>
-        <FillLayout/>
-    </Composite.layout>
-    <TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sshInfoBOs"
-                 input="{Binding path=input}">
-        <TableViewer.table headerVisible="true"
-                           linesVisible="true"/>
-        <TableViewer.columns>
-            <TableViewerColumn width="100" text="Host"/>
-            <TableViewerColumn width="100" text="Name"/>
-        </TableViewer.columns>
-        <TableViewer.cellEditors>
-            <TextCellEditor/>
-            <TextCellEditor/>
-        </TableViewer.cellEditors>
-        <TableViewer.columnProperties>
-            <j:String>host</j:String>
-            <j:String>userName</j:String>
-        </TableViewer.columnProperties>
-        <TableViewer.cellModifier>
-            <m:CommonTableCellModifier/>
-        </TableViewer.cellModifier>
-    </TableViewer>
+	xmlns:m="clr-namespace:com.aiziyuer.app.ui.common" xmlns:j="clr-namespace:java.lang"
+	xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.SshInfoTableViewerComposite">
+	<Composite.layout>
+		<FillLayout />
+	</Composite.layout>
+	<SashForm weights="1, 2">
+		<Group text="Sessions">
+			<Group.layout>
+				<GridLayout />
+			</Group.layout>
+			<Composite>
+				<Composite.layout>
+					<FillLayout marginHeight="12" />
+				</Composite.layout>
+				<Composite.layoutData>
+					<GridData horizontalAlignment="FILL"
+						grabExcessHorizontalSpace="true" verticalAlignment="CENTER" />
+				</Composite.layoutData>
+				<Text x:Style="BORDER" x:Name="hostSearch" message="Quick Search..." />
+			</Composite>
+			<Composite>
+				<Composite.layout>
+					<FillLayout />
+				</Composite.layout>
+				<Composite.layoutData>
+					<GridData horizontalAlignment="FILL" verticalAlignment="FILL"
+						grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" />
+				</Composite.layoutData>
+				<TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sshInfoBOs"
+					input="{Binding path=input}">
+					<TableViewer.table headerVisible="true"
+						linesVisible="true" />
+					<TableViewer.cellEditors>
+						<TextCellEditor />
+					</TableViewer.cellEditors>
+					<TableViewer.columnProperties>
+						<j:String>host</j:String>
+					</TableViewer.columnProperties>
+					<TableViewer.cellModifier>
+						<m:CommonTableCellModifier />
+					</TableViewer.cellModifier>
+					<TableViewerColumn width="50" />
+					<TableViewerColumn width="180" text="HOST" />
+				</TableViewer>
+			</Composite>
+		</Group>
+		<Group text="Tunnels">
+			<Group.layout>
+				<GridLayout />
+			</Group.layout>
+			<Composite>
+				<Composite.layout>
+					<GridLayout marginWidth="0" />
+				</Composite.layout>
+				<Composite.layoutData>
+					<GridData horizontalAlignment="FILL"
+						grabExcessHorizontalSpace="true" />
+				</Composite.layoutData>
+				<Composite>
+					<Composite.layout>
+						<GridLayout numColumns="4" marginWidth="0" />
+					</Composite.layout>
+					<Composite.layoutData>
+						<GridData horizontalAlignment="FILL"
+							grabExcessHorizontalSpace="true" />
+					</Composite.layoutData>
+					<Text x:Style="BORDER" x:Name="tunnelSearch" message="Quick Search...">
+						<Text.layoutData>
+							<GridData grabExcessHorizontalSpace="true"
+								horizontalAlignment="FILL" />
+						</Text.layoutData>
+					</Text>
+					<Button text="Add" />
+					<Button text="Edit" />
+					<Button text="Remove" />
+				</Composite>
+			</Composite>
+			<Composite>
+				<Composite.layout>
+					<FillLayout />
+				</Composite.layout>
+				<Composite.layoutData>
+					<GridData horizontalAlignment="FILL" verticalAlignment="FILL"
+						grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" />
+				</Composite.layoutData>
+				<TableViewer x:Style="BORDER | FULL_SELECTION">
+					<TableViewer.table headerVisible="true"
+						linesVisible="true" />
+					<TableViewerColumn width="100" text="Local Address" />
+					<TableViewerColumn text="Local Port" width="80" />
+					<TableViewerColumn width="50" />
+					<TableViewerColumn width="120" text="Remote Address" />
+					<TableViewerColumn width="100" text="Remote Port" />
+				</TableViewer>
+			</Composite>
+		</Group>
+	</SashForm>
 </Composite>

@@ -2,7 +2,6 @@ package com.aiziyuer.app;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.databinding.observable.Realm;
@@ -17,7 +16,6 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.aiziyuer.app.framework.util.ServiceLocator;
 import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
-import com.aiziyuer.app.ssh.bo.TunnelBO;
 import com.aiziyuer.app.ui.main.MainApplicationWindow;
 
 import lombok.extern.log4j.Log4j2;
@@ -70,8 +68,8 @@ public class CoreApplication {
 		log.info("start gui start.");
 
 		ISshInfoBiz sshInfoBiz = ServiceLocator.getInstance().getBean("sshInfoBiz");
-		List<TunnelBO> tunnelBOs = sshInfoBiz.listTunnelBos(1);
-		sshInfoBiz.createTunnels(tunnelBOs);
+		// List<TunnelBO> tunnelBOs = sshInfoBiz.listTunnelBos(1);
+		// sshInfoBiz.createTunnels(tunnelBOs);
 
 		// 整个UI的操作放在UI的线程中执行, 与Main线程作出区分
 		Realm.runWithDefault(SWTObservables.getRealm(Display.getDefault()), () -> {

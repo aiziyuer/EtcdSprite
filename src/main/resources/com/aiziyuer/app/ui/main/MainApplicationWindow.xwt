@@ -33,22 +33,7 @@
 			</MenuItem>
 		</Menu>
 	</Shell.menuBar>
-	<Composite x:Name="mainContainer">
-		<Composite.layout>
-			<FillLayout />
-		</Composite.layout>
-		<SashForm weights="1, 2">
-			<Composite background="COLOR_INFO_BACKGROUND" x:Name="leftContainer">
-				<Composite.layout>
-					<FillLayout />
-				</Composite.layout>
-			</Composite>
-			<Composite background="COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT"
-				x:Name="rightContainer">
-				<Composite.layout>
-					<FillLayout />
-				</Composite.layout>
-			</Composite>
-		</SashForm>
-	</Composite>
+	<CTabFolder x:Style="BORDER" x:Name="cTabFolder">
+		<CTabItem text="SSH Tunnels" x:Name="cTabItem"/>
+	</CTabFolder>
 </Shell>
