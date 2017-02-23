@@ -32,9 +32,9 @@ public class SshInfoTableViewerManager {
 		XWT.setLoadingContext(new DefaultLoadingContext(this.getClass().getClassLoader()));
 
 		// load XWT
-		String name = SshInfoTableViewerComposite.class.getSimpleName() + IConstants.XWT_EXTENSION_SUFFIX;
+		String name = SshInfoComposite.class.getSimpleName() + IConstants.XWT_EXTENSION_SUFFIX;
 		try {
-			URL url = SshInfoTableViewerComposite.class.getResource(name);
+			URL url = SshInfoComposite.class.getResource(name);
 			Map<String, Object> options = new HashMap<String, Object>();
 			options.put(IXWTLoader.CLASS_PROPERTY, this);
 			options.put(IXWTLoader.CONTAINER_PROPERTY, parent);

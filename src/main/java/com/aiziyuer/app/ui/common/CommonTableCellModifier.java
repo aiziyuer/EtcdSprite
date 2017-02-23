@@ -1,11 +1,9 @@
 package com.aiziyuer.app.ui.common;
 
-import java.io.Serializable;
-import java.util.Observable;
+import java.lang.reflect.InvocationTargetException;
 
-import org.apache.commons.lang.SerializationUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.reflect.FieldUtils;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
@@ -38,8 +36,8 @@ public class CommonTableCellModifier implements ICellModifier {
 		Object ret = null;
 
 		try {
-			ret = FieldUtils.readDeclaredField(element, property, true);
-		} catch (IllegalAccessException e) {
+			ret = PropertyUtils.getProperty(element, property);
+		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 			log.error(e);
 		}
 
@@ -53,35 +51,18 @@ public class CommonTableCellModifier implements ICellModifier {
 
 			// 如果数据没有发生改变则不作处理直接返回
 			TableItem item = (TableItem) element;
-			if (StringUtils.equalsIgnoreCase(item.getText(),
-					String.valueOf(value))) {
+			if (StringUtils.equalsIgnoreCase(item.getText(), String.valueOf(value))) {
 				return;
 			}
 
 			Object data = item.getData();
 
-			// 修改数据前做一次拷贝
-			Object oldData = data instanceof Serializable
-					? SerializationUtils.clone((Serializable) data) : null;
-
 			// 通过反射修改原始的数据
-			FieldUtils.writeDeclaredField(data, property, value, true);
-
-			// 修改界面的数据
-//			int index = ArrayUtils.indexOf(tv.getColumnProperties(), property);
-//			if (index != ArrayUtils.INDEX_NOT_FOUND) {
-//				item.setText(index, String.valueOf(value));
-//			}
+			PropertyUtils.setProperty(data, property, value);
 
 			tv.refresh();
 
-			// 如果编辑的数据时支持被观察, 则数据修改后通知所有的观察者
-			if (data instanceof Observable) {
-				Observable observable = (Observable) data;
-				FieldUtils.writeField(data, "changed", true, true);
-				observable.notifyObservers(oldData);
-			}
-		} catch (IllegalAccessException e) {
+		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 			log.error(e);
 		}
 

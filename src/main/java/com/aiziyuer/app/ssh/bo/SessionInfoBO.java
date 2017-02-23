@@ -21,7 +21,7 @@ public class SessionInfoBO extends CommonBO implements Serializable {
 	@Accessors(bound = true)
 	private String host;
 
-	/** 目标主机端口*/
+	/** 目标主机端口 */
 	@Accessors(bound = true)
 	private int port = 22;
 
@@ -33,4 +33,10 @@ public class SessionInfoBO extends CommonBO implements Serializable {
 	@Accessors(bound = true)
 	private String userPassword;
 
+	@Accessors(bound = true)
+	public SessionStatus status = SessionStatus.DISCONNECTED;
+
+	public String getHostLabel() {
+		return String.format("%s@%s:%d", userName, host, port);
+	}
 }

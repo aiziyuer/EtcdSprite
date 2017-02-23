@@ -1,10 +1,11 @@
 <Composite xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:m="clr-namespace:com.aiziyuer.app.ui.common" xmlns:j="clr-namespace:java.lang"
-	xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.SshInfoTableViewerComposite">
+	xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.SshInfoComposite"
+	xmlns:p1="clr-namespace:com.aiziyuer.app.ui.ssh">
 	<Composite.layout>
 		<FillLayout />
 	</Composite.layout>
-	<SashForm weights="1, 2">
+	<SashForm weights="1, 3">
 		<Group text="Sessions">
 			<Group.layout>
 				<GridLayout />
@@ -31,17 +32,23 @@
 					input="{Binding path=input}">
 					<TableViewer.table headerVisible="true"
 						linesVisible="true" />
-					<TableViewer.cellEditors>
-						<TextCellEditor />
-					</TableViewer.cellEditors>
+					<!-- <TableViewer.cellEditors> -->
+					<!-- <TextCellEditor /> -->
+					<!-- </TableViewer.cellEditors> -->
+					<!-- <TableViewer.cellModifier> -->
+					<!-- <m:CommonTableCellModifier /> -->
+					<!-- </TableViewer.cellModifier> -->
+					<TableViewer.columns>
+						<TableViewerColumn width="23" />
+						<TableViewerColumn width="150" text="HOST" />
+					</TableViewer.columns>
 					<TableViewer.columnProperties>
-						<j:String>host</j:String>
+						<j:String>status</j:String>
+						<j:String>hostLabel</j:String>
 					</TableViewer.columnProperties>
-					<TableViewer.cellModifier>
-						<m:CommonTableCellModifier />
-					</TableViewer.cellModifier>
-					<TableViewerColumn width="50" />
-					<TableViewerColumn width="180" text="HOST" />
+					<TableViewer.labelProvider>
+						<p1:SshInfoTableLabelProvider />
+					</TableViewer.labelProvider>
 				</TableViewer>
 			</Composite>
 		</Group>
@@ -87,24 +94,24 @@
 				<TableViewer x:Style="BORDER | FULL_SELECTION">
 					<TableViewer.table headerVisible="true"
 						linesVisible="true" />
-					<TableViewerColumn width="100" text="Local Address" />
-					<TableViewerColumn text="Local Port" width="80" />
+					<TableViewerColumn width="120" text="Local Address" />
+					<TableViewerColumn text="Local Port" width="100" />
 					<TableViewerColumn width="50" />
 					<TableViewerColumn width="120" text="Remote Address" />
 					<TableViewerColumn width="100" text="Remote Port" />
 				</TableViewer>
 			</Composite>
-			<Composite >
+			<Composite>
 				<Composite.layoutData>
-					<GridData horizontalAlignment="CENTER"/>
+					<GridData horizontalAlignment="CENTER" />
 				</Composite.layoutData>
 				<Composite.layout>
-					<FillLayout/>
+					<FillLayout />
 				</Composite.layout>
-				<Button text="Connect" image="icons/connect.png"/>
-				<Button text="Disconnect" image="icons/disconnect.png"/>
-				<Button text="Connect All" image="icons/connect_all.png"/>
-				<Button text="Disconnect All" image="icons/disconnect_all.png"/>
+				<Button text="Connect" image="icons/connect.png" />
+				<Button text="Disconnect" image="icons/disconnect.png" />
+				<Button text="Connect All" image="icons/connect_all.png" />
+				<Button text="Disconnect All" image="icons/disconnect_all.png" />
 			</Composite>
 		</Group>
 	</SashForm>

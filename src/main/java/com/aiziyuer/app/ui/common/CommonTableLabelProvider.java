@@ -1,6 +1,6 @@
 package com.aiziyuer.app.ui.common;
 
-import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
@@ -13,11 +13,10 @@ import lombok.extern.log4j.Log4j2;
 public class CommonTableLabelProvider implements ITableLabelProvider {
 
 	@Getter
-	private TableViewer tv;
+	protected TableViewer tv;
 
 	public CommonTableLabelProvider(TableViewer tv) {
 		super();
-
 		this.tv = tv;
 	}
 
@@ -49,16 +48,14 @@ public class CommonTableLabelProvider implements ITableLabelProvider {
 		String ret = null;
 
 		try {
-			ret = String.valueOf(FieldUtils.readDeclaredField(element,
-					String.valueOf(tv.getColumnProperties()[columnIndex]),
-					true));
+			ret = String
+					.valueOf(PropertyUtils.getProperty(element, String.valueOf(tv.getColumnProperties()[columnIndex])));
 		} catch (Exception e) {
 			log.error(e);
 		}
 
 		if (ret == null)
-			log.warn(String.format("cannot handle element:%s, columnIndex:%d.",
-					String.valueOf(element), columnIndex));
+			log.warn(String.format("cannot handle element:%s, columnIndex:%d.", String.valueOf(element), columnIndex));
 
 		return ret;
 	}
