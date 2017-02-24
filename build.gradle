@@ -98,6 +98,9 @@ dependencies {
     String LOG4J_VERSION = '2.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J_VERSION
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: LOG4J_VERSION
+    
+    // yaml工具类
+    compile group: 'com.esotericsoftware.yamlbeans', name: 'yamlbeans', version: '1.08'
 
     // 通用工具包
     compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.8.3'

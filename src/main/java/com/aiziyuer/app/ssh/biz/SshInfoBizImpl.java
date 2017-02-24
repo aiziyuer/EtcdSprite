@@ -1,6 +1,6 @@
 package com.aiziyuer.app.ssh.biz;
 
-import java.util.ArrayList;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.aiziyuer.app.framework.util.PathConstant;
+import com.aiziyuer.app.framework.util.YamlUtils;
 import com.aiziyuer.app.ssh.bo.SessionInfoBO;
 import com.aiziyuer.app.ssh.bo.TunnelBO;
 import com.jcraft.jsch.JSch;
@@ -34,34 +36,36 @@ public class SshInfoBizImpl implements ISshInfoBiz {
 	@Override
 	public List<SessionInfoBO> listSessionInfoBOs() {
 
-		List<SessionInfoBO> sshInfoBOs = new ArrayList<SessionInfoBO>();
+		String yamlFile = Paths.get(PathConstant.DATA_DIR, String.format("%s.yml", SessionInfoBO.class.getSimpleName()))
+				.toString();
+		List<SessionInfoBO> sshInfoBOs = YamlUtils.load(yamlFile);
 
 		return sshInfoBOs;
 	}
 
 	@Override
 	public void releaseSessions() {
+
+		String yamlFile = Paths.get(PathConstant.DATA_DIR, String.format("%s.yml", SessionInfoBO.class.getSimpleName()))
+				.toString();
+		List<SessionInfoBO> sshInfoBOs = YamlUtils.load(yamlFile);
+		YamlUtils.save(yamlFile, sshInfoBOs);
+
 		for (Session session : sessionMap.values()) {
 			session.disconnect();
 		}
 	}
 
 	@Override
-	public void createTunnels(List<TunnelBO> tunnelBOs) {
+	public void createTunnels(SessionInfoBO sessionInfoBO, List<TunnelBO> tunnelBOs) {
 
 		for (TunnelBO tunnelBO : tunnelBOs)
-			createTunnel(tunnelBO);
+			createTunnel(sessionInfoBO, tunnelBO);
 
 	}
 
 	@Override
-	public void createTunnel(TunnelBO tunnelBO) {
-
-		SessionInfoBO sessionInfoBO = tunnelBO.getSessionInfo();
-		if (sessionInfoBO == null) {
-			log.error(String.format("tunnelBO:(%s) has no sessionInfo", tunnelBO));
-			return;
-		}
+	public void createTunnel(SessionInfoBO sessionInfoBO, TunnelBO tunnelBO) {
 
 		String name = sessionInfoBO.getUserName();
 		String host = sessionInfoBO.getHost();

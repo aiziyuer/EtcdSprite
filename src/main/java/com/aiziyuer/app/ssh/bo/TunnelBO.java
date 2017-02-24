@@ -1,7 +1,5 @@
 package com.aiziyuer.app.ssh.bo;
 
-import java.io.Serializable;
-
 import com.aiziyuer.app.framework.common.CommonBO;
 
 import lombok.Data;
@@ -15,10 +13,7 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class TunnelBO extends CommonBO implements Serializable {
-
-	/** 序列化的ID */
-	private static final long serialVersionUID = 1L;
+public class TunnelBO extends CommonBO {
 
 	/** 别名 */
 	@Accessors(bound = true)
@@ -40,7 +35,7 @@ public class TunnelBO extends CommonBO implements Serializable {
 	 * 相当于<code>ssh -NfR 8080:127.0.0.1:80 lc@127.0.0.1 -p 2202</code>
 	 */
 	@Accessors(bound = true)
-	private boolean isLocal;
+	private boolean local;
 
 	/** 远端隧道主机 */
 	@Accessors(bound = true)
@@ -49,8 +44,4 @@ public class TunnelBO extends CommonBO implements Serializable {
 	/** 远端隧道口 */
 	@Accessors(bound = true)
 	private String remoteTunnelPort;
-
-	/** SessionInfo信息 */
-	@Accessors(bound = true)
-	private SessionInfoBO sessionInfo;
 }

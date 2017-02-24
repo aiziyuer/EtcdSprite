@@ -37,14 +37,15 @@ public interface ISshInfoBiz {
 	 * @param tunnelBO
 	 *            隧道信息
 	 */
-	void createTunnel(TunnelBO tunnelBO);
+	void createTunnel(SessionInfoBO sessionInfoBO, TunnelBO tunnelBO);
 
 	/**
 	 * 创建隧道
 	 * 
-	 * @param tunnelBOs 隧道信息
+	 * @param tunnelBOs
+	 *            隧道信息
 	 */
-	void createTunnels(List<TunnelBO> tunnelBOs);
+	void createTunnels(SessionInfoBO sessionInfoBO, List<TunnelBO> tunnelBOs);
 
 	/**
 	 * 释放所有的Session

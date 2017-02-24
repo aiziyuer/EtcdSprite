@@ -1,0 +1,20 @@
+- !com.aiziyuer.app.ssh.bo.SessionInfoBO
+   host: 127.0.0.1
+   port: 2022
+   tunnelBOs: 
+   - !com.aiziyuer.app.ssh.bo.TunnelBO
+      alias: "\u6b63\u5411\u96a7\u90531"
+      local: true
+      localTunnelHost: localhost
+      localTunnelPort: 80
+      remoteTunnelHost: localhost
+      remoteTunnelPort: 80
+   - !com.aiziyuer.app.ssh.bo.TunnelBO
+      alias: "\u53cd\u5411\u96a7\u90531"
+      local: true
+      localTunnelHost: localhost
+      localTunnelPort: 80
+      remoteTunnelHost: localhost
+      remoteTunnelPort: 80
+   userName: lc
+   userPassword: ziyu

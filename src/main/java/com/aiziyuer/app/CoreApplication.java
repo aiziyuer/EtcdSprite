@@ -56,6 +56,8 @@ public class CoreApplication {
 	public static void main(String[] args) {
 
 		log.info("start gui start.");
+		
+		SshInfoBizImpl.getInstance().listSessionInfoBOs();
 
 		// 整个UI的操作放在UI的线程中执行, 与Main线程作出区分
 		Realm.runWithDefault(SWTObservables.getRealm(Display.getDefault()), () -> {
