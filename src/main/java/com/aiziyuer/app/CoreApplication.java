@@ -1,6 +1,5 @@
 package com.aiziyuer.app;
 
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,21 +11,14 @@ import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.aiziyuer.app.framework.util.ServiceLocator;
-import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
-import com.aiziyuer.app.ui.main.MainApplicationWindow;
+import com.aiziyuer.app.ssh.biz.SshInfoBizImpl;
+import com.aiziyuer.app.ui.main.ApplicationWindow;
 
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class CoreApplication {
-
-	static {
-		new FileSystemXmlApplicationContext(
-				Paths.get(System.getProperty("spring.config.path"), "applicationContext.xml").toString());
-	}
 
 	private void centerInDisplay(Shell shell) {
 		Rectangle displayArea = shell.getDisplay().getPrimaryMonitor().getClientArea();
@@ -41,10 +33,8 @@ public class CoreApplication {
 			options.put(IXWTLoader.CONTAINER_PROPERTY, null);
 
 			Shell shell = XWT
-					.loadWithOptions(
-							MainApplicationWindow.class.getResource(
-									MainApplicationWindow.class.getSimpleName() + IConstants.XWT_EXTENSION_SUFFIX),
-							options)
+					.loadWithOptions(ApplicationWindow.class.getResource(
+							ApplicationWindow.class.getSimpleName() + IConstants.XWT_EXTENSION_SUFFIX), options)
 					.getShell();
 
 			shell.layout();
@@ -67,21 +57,17 @@ public class CoreApplication {
 
 		log.info("start gui start.");
 
-		ISshInfoBiz sshInfoBiz = ServiceLocator.getInstance().getBean("sshInfoBiz");
-		// List<TunnelBO> tunnelBOs = sshInfoBiz.listTunnelBos(1);
-		// sshInfoBiz.createTunnels(tunnelBOs);
-
 		// 整个UI的操作放在UI的线程中执行, 与Main线程作出区分
 		Realm.runWithDefault(SWTObservables.getRealm(Display.getDefault()), () -> {
 
 			Thread.currentThread().setName("UIThread");
-			CoreApplication app = ServiceLocator.getInstance().getBean("coreApplication");
+			CoreApplication app = new CoreApplication();
 			app.run();
 
 		});
 
 		// 程序结束释放所有的session信息
-		sshInfoBiz.releaseSessions();
+		SshInfoBizImpl.getInstance().releaseSessions();
 
 		log.info("start gui end.");
 	}

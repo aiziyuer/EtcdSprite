@@ -34,7 +34,7 @@ public class SessionInfoBO extends CommonBO implements Serializable {
 	private String userPassword;
 
 	@Accessors(bound = true)
-	public SessionStatus status = SessionStatus.DISCONNECTED;
+	public String status = SessionStatus.DISCONNECTED.toString();
 
 	public String getHostLabel() {
 		return String.format("%s@%s:%d", userName, host, port);

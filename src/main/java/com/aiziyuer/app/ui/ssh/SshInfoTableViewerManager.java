@@ -12,8 +12,8 @@ import org.eclipse.e4.xwt.IXWTLoader;
 import org.eclipse.e4.xwt.XWT;
 import org.eclipse.swt.widgets.Composite;
 
-import com.aiziyuer.app.framework.util.ServiceLocator;
 import com.aiziyuer.app.ssh.biz.ISshInfoBiz;
+import com.aiziyuer.app.ssh.biz.SshInfoBizImpl;
 import com.aiziyuer.app.ssh.bo.SessionInfoBO;
 
 import lombok.Getter;
@@ -39,7 +39,7 @@ public class SshInfoTableViewerManager {
 			options.put(IXWTLoader.CLASS_PROPERTY, this);
 			options.put(IXWTLoader.CONTAINER_PROPERTY, parent);
 
-			ISshInfoBiz sshInfoBiz = ServiceLocator.getInstance().getBean("sshInfoBiz");
+			ISshInfoBiz sshInfoBiz = SshInfoBizImpl.getInstance();
 			List<SessionInfoBO> sshInfoBOs = sshInfoBiz.listSessionInfoBOs();
 			input.addAll(sshInfoBOs);
 			options.put(IXWTLoader.DATACONTEXT_PROPERTY, this);

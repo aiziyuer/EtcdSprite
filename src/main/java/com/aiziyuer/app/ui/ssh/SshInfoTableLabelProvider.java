@@ -16,11 +16,11 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class SshInfoTableLabelProvider extends CommonTableLabelProvider {
 
-	private static final Map<SessionStatus, String> SESSION_STATUS_IMAGE_PATH_MAP = new HashMap<SessionStatus, String>();
+	private static final Map<String, String> SESSION_STATUS_IMAGE_PATH_MAP = new HashMap<String, String>();
 
 	{
-		SESSION_STATUS_IMAGE_PATH_MAP.put(SessionStatus.CONNECTED, "icons/bullet_green.png");
-		SESSION_STATUS_IMAGE_PATH_MAP.put(SessionStatus.DISCONNECTED, "icons/bullet_red.png");
+		SESSION_STATUS_IMAGE_PATH_MAP.put(SessionStatus.CONNECTED.toString(), "icons/bullet_green.png");
+		SESSION_STATUS_IMAGE_PATH_MAP.put(SessionStatus.DISCONNECTED.toString(), "icons/bullet_red.png");
 	}
 
 	public SshInfoTableLabelProvider(TableViewer tv) {
@@ -31,8 +31,8 @@ public class SshInfoTableLabelProvider extends CommonTableLabelProvider {
 
 		if (columnIndex == 0) {
 			try {
-				SessionStatus sessionStatus = (SessionStatus) PropertyUtils.getProperty(element,
-						String.valueOf(tv.getColumnProperties()[columnIndex]));
+				String sessionStatus = String.valueOf(
+						PropertyUtils.getProperty(element, String.valueOf(tv.getColumnProperties()[columnIndex])));
 
 				return SWTResourceManager.getImage(this.getClass(), SESSION_STATUS_IMAGE_PATH_MAP.get(sessionStatus));
 

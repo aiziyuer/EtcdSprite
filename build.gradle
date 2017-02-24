@@ -98,24 +98,6 @@ dependencies {
     String LOG4J_VERSION = '2.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J_VERSION
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: LOG4J_VERSION
-    compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: LOG4J_VERSION
-    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: LOG4J_VERSION
-    compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: LOG4J_VERSION
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
-    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.7'
-    compile group: 'org.jboss.logging', name: 'jboss-logging', version: '3.2.0.Final'
-
-    // 配置Spring
-    String SPRING_VERSION = '4.3.3.RELEASE'
-    compile group: 'org.springframework', name: 'spring-context', version: SPRING_VERSION
-
-    // 配置数据库
-    compile group: 'org.springframework', name: 'spring-jdbc', version: SPRING_VERSION
-    compile group: 'org.springframework', name: 'spring-orm', version: SPRING_VERSION
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.11.Final'
-    compile 'com.enigmabridge:hibernate4-sqlite-dialect:0.1.2'
-    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.0'
-    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.16.1'
 
     // 通用工具包
     compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.8.3'
