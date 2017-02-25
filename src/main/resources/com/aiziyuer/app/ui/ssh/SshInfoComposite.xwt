@@ -28,16 +28,10 @@
 					<GridData horizontalAlignment="FILL" verticalAlignment="FILL"
 						grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" />
 				</Composite.layoutData>
-				<TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sshInfoBOs"
+				<TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sessionTableViewer"
 					input="{Binding path=input}">
-					<TableViewer.table headerVisible="true"
-						linesVisible="true" />
-					<!-- <TableViewer.cellEditors> -->
-					<!-- <TextCellEditor /> -->
-					<!-- </TableViewer.cellEditors> -->
-					<!-- <TableViewer.cellModifier> -->
-					<!-- <m:CommonTableCellModifier /> -->
-					<!-- </TableViewer.cellModifier> -->
+					<TableViewer.table
+						linesVisible="true" MenuDetectEvent="onMenuDetect" />
 					<TableViewer.columns>
 						<TableViewerColumn width="23" />
 						<TableViewerColumn width="150" text="HOST" />
@@ -91,14 +85,27 @@
 					<GridData horizontalAlignment="FILL" verticalAlignment="FILL"
 						grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" />
 				</Composite.layoutData>
-				<TableViewer x:Style="BORDER | FULL_SELECTION">
+				<TableViewer x:Style="BORDER | FULL_SELECTION" input="{Binding path=tunnels}"
+					x:Name="tunnelTableViewer">
 					<TableViewer.table headerVisible="true"
 						linesVisible="true" />
-					<TableViewerColumn width="120" text="Local Address" />
-					<TableViewerColumn text="Local Port" width="100" />
-					<TableViewerColumn width="50" />
-					<TableViewerColumn width="120" text="Remote Address" />
-					<TableViewerColumn width="100" text="Remote Port" />
+					<TableViewer.columns>
+						<TableViewerColumn width="120" text="Local Address" />
+						<TableViewerColumn text="Local Port" width="100" />
+						<TableViewerColumn width="50" />
+						<TableViewerColumn width="120" text="Remote Address" />
+						<TableViewerColumn width="100" text="Remote Port" />
+					</TableViewer.columns>
+					<TableViewer.columnProperties>
+						<j:String>localTunnelHost</j:String>
+						<j:String>localTunnelHost</j:String>
+						<j:String>localTunnelHost</j:String>
+						<j:String>localTunnelHost</j:String>
+						<j:String>localTunnelHost</j:String>
+					</TableViewer.columnProperties>
+					<TableViewer.labelProvider>
+						<p1:TunnelInfoLabelProvider />
+					</TableViewer.labelProvider>
 				</TableViewer>
 			</Composite>
 			<Composite>
