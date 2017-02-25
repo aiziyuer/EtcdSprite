@@ -151,16 +151,11 @@ task copyStaticFile(type: Copy) {
     }
 
     copy {
-        // 配置Spring文件
-        from 'config/spring'
-        into PACKAGE_DIR + '/config/spring'
+        // 数据文件
+        from 'config/data'
+        into PACKAGE_DIR + '/config/data'
     }
 
-    copy {
-        // 拷贝数据库文件
-        from 'db/app.db'
-        into PACKAGE_DIR + '/db'
-    }
 }
 
 tasks.createExe.dependsOn('copyStaticFile')
