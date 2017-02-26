@@ -23,8 +23,6 @@ public class AdvanceWritableList extends WritableList {
 			entries[entryIndex++] = Diffs.createListDiffEntry(elementIndex, false, element);
 		}
 		wrappedList.clear();
-		fireListChange(Diffs.createListDiff(entries));
-
 		int addIndex = wrappedList.size();
 		for (Iterator<T> it = c.iterator(); it.hasNext();) {
 			Object element = it.next();

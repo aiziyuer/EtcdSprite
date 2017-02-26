@@ -30,8 +30,16 @@
 				</Composite.layoutData>
 				<TableViewer x:Style="BORDER | FULL_SELECTION" x:Name="sessionTableViewer"
 					input="{Binding path=input}">
-					<TableViewer.table
-						linesVisible="true" MenuDetectEvent="onMenuDetect" />
+					<TableViewer.table linesVisible="true"
+						MenuDetectEvent="onMenuDetect">
+						<TableViewer.table.menu>
+							<Menu>
+								<MenuItem text="Add" />
+								<MenuItem text="Modify" />
+								<MenuItem text="Delte" />
+							</Menu>
+						</TableViewer.table.menu>
+					</TableViewer.table>
 					<TableViewer.columns>
 						<TableViewerColumn width="23" />
 						<TableViewerColumn width="150" text="HOST" />

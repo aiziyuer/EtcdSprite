@@ -6,6 +6,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.e4.xwt.XWT;
 import org.eclipse.e4.xwt.annotation.UI;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
+import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -13,6 +14,9 @@ import org.eclipse.swt.widgets.Event;
 
 import com.aiziyuer.app.ui.common.AbstractComposite;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 public class SshInfoComposite extends AbstractComposite {
 
 	@UI
@@ -37,7 +41,15 @@ public class SshInfoComposite extends AbstractComposite {
 	protected void addListener() {
 
 		modle.getTunnels().addListChangeListener((ListChangeEvent event) -> {
+
+			log.info("tunnels list changed.");
 			tunnelTableViewer.refresh();
+		});
+
+		sessionTableViewer.addDoubleClickListener((DoubleClickEvent event) -> {
+
+			log.info("sessionTable double clicked.");
+
 		});
 
 	}
@@ -46,12 +58,14 @@ public class SshInfoComposite extends AbstractComposite {
 	protected void addDataBinding() {
 
 		IObservableValue targetObservableValue = ViewersObservables.observeSingleSelection(sessionTableViewer);
-		IObservableValue modelObservableValue = BeanProperties.value(modle.getClass(), "sessionInfoBO").observe(modle);
+		IObservableValue modelObservableValue = BeanProperties.value("sessionInfoBO").observe(modle);
 		XWT.getBindingContext(this).bindValue(targetObservableValue, modelObservableValue);
 
 	}
 
 	public void onMenuDetect(Event event) {
-		System.out.println(event);
+
+		log.info(event);
+
 	}
 }
