@@ -8,6 +8,7 @@ import org.eclipse.e4.xwt.annotation.UI;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -49,6 +50,12 @@ public class SshInfoComposite extends AbstractComposite {
 		sessionTableViewer.addDoubleClickListener((DoubleClickEvent event) -> {
 
 			log.info("sessionTable double clicked.");
+
+			EditSessionDialog dialog = new EditSessionDialog(this.getShell(), SWT.NONE);
+			int result = dialog.open();
+			if (result == SWT.OK) {
+				log.info("press ok.");
+			}
 
 		});
 

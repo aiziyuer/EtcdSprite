@@ -1,0 +1,87 @@
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.EditSessionComposite" touchEnabled="true">
+	<Composite.layout>
+		<GridLayout />
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<GridLayout numColumns="2" />
+		</Composite.layout>
+		<Composite.layoutData>
+			<GridData grabExcessHorizontalSpace="true"
+				verticalAlignment="FILL" horizontalAlignment="FILL" />
+		</Composite.layoutData>
+
+		<Label text="Name:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="80" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionNameText">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="Host:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="80" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionHostText">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="Port:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="80" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" text="22"
+			x:Name="sessionPortText">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="UserName:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="80" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionUserNameText">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="Password:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="80" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessoinPasswordText">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+	</Composite>
+	<Composite bounds="0, 0, 64, 64">
+		<Composite.layout>
+			<RowLayout />
+		</Composite.layout>
+		<Composite.layoutData>
+			<GridData grabExcessHorizontalSpace="true"
+				horizontalAlignment="CENTER" verticalAlignment="FILL" />
+		</Composite.layoutData>
+		<Button text="OK" bounds="0, 0, 80, 27" />
+		<Button text="Cancel" bounds="0, 0, 80, 27" />
+	</Composite>
+</Composite>

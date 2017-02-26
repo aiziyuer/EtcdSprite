@@ -16,6 +16,8 @@ public class SshInfoModle extends CommonBO {
 
 	@Getter
 	private WritableList input = new WritableList();
+	
+
 
 	@Getter
 	@Setter
@@ -26,7 +28,7 @@ public class SshInfoModle extends CommonBO {
 	private AdvanceWritableList tunnels = new AdvanceWritableList();
 
 	public SshInfoModle() {
-
+		
 		addPropertyChangeListener("sessionInfoBO", (PropertyChangeEvent event) -> {
 
 			SessionInfoBO oldObj = (SessionInfoBO) event.getOldValue();
