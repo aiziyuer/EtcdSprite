@@ -456,8 +456,11 @@ public class ResourceLoader implements IVisualElementLoader {
 				styleValue = SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX
 						| SWT.RESIZE;
 			}
-			Display display = Display.getDefault();
-			shell = new Shell(display, styleValue);
+			if(parent != null && parent instanceof Shell && metaclass.getType() == Shell.class) {
+			    shell = new Shell((Shell) parent, styleValue);
+			} else {
+			    shell = new Shell(Display.getDefault(), styleValue);
+			}
 			targetObject = shell;
 			invokeCreatededAction(element, targetObject);
 			loadData.setCurrentWidget(shell);
