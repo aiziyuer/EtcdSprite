@@ -1,5 +1,6 @@
 package com.aiziyuer.app.ssh.bo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.aiziyuer.app.framework.common.CommonBO;
@@ -12,7 +13,12 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class SessionInfoBO extends CommonBO  {
+public class SessionInfoBO extends CommonBO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** 目标主机 */
 	@Accessors(bound = true)
@@ -34,7 +40,7 @@ public class SessionInfoBO extends CommonBO  {
 	public String status = SessionStatus.DISCONNECTED.toString();
 
 	@Accessors(bound = true)
-	private List<TunnelBO> tunnelBOs;
+	private transient List<TunnelBO> tunnelBOs;
 
 	public String getHostLabel() {
 		return String.format("%s@%s:%d", userName, host, port);

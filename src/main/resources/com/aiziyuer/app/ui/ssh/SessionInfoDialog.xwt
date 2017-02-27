@@ -1,8 +1,9 @@
-<Composite xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:x="http://www.eclipse.org/xwt" x:Class="com.aiziyuer.app.ui.ssh.EditSessionComposite" touchEnabled="true">
-	<Composite.layout>
+<Shell xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	x:Class="com.aiziyuer.app.ui.ssh.SessionInfoDialog" text="XWT Application" Size="300, 240">
+	<Shell.layout>
 		<GridLayout />
-	</Composite.layout>
+	</Shell.layout>
+
 	<Composite>
 		<Composite.layout>
 			<GridLayout numColumns="2" />
@@ -81,7 +82,7 @@
 			<GridData grabExcessHorizontalSpace="true"
 				horizontalAlignment="CENTER" verticalAlignment="FILL" />
 		</Composite.layoutData>
-		<Button text="OK" bounds="0, 0, 80, 27" />
+		<Button text="OK" bounds="0, 0, 80, 27" SelectionEvent="onSelection" />
 		<Button text="Cancel" bounds="0, 0, 80, 27" />
 	</Composite>
-</Composite>
+</Shell>

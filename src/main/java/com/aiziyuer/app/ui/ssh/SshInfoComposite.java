@@ -1,5 +1,6 @@
 package com.aiziyuer.app.ui.ssh;
 
+import org.apache.commons.lang3.SerializationUtils;
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.list.ListChangeEvent;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -13,6 +14,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 
+import com.aiziyuer.app.ssh.bo.SessionInfoBO;
 import com.aiziyuer.app.ui.common.AbstractComposite;
 
 import lombok.extern.log4j.Log4j2;
@@ -51,8 +53,9 @@ public class SshInfoComposite extends AbstractComposite {
 
 			log.info("sessionTable double clicked.");
 
-			EditSessionDialog dialog = new EditSessionDialog(this.getShell(), SWT.NONE);
-			int result = dialog.open();
+			SessionInfoBO sessionInfoBO = SerializationUtils.clone(modle.getSessionInfoBO());
+			
+			int result = new SessionInfoDialog().open(getShell(), sessionInfoBO);
 			if (result == SWT.OK) {
 				log.info("press ok.");
 			}
