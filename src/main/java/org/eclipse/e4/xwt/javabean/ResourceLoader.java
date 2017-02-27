@@ -100,6 +100,7 @@ import org.eclipse.swt.widgets.Widget;
 /**
  * @author jliu (jin.liu@soyatec.com)
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class ResourceLoader implements IVisualElementLoader {
 	static Map<String, Object> EMPTY_MAP = Collections.EMPTY_MAP;
 
@@ -456,8 +457,11 @@ public class ResourceLoader implements IVisualElementLoader {
 				styleValue = SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX
 						| SWT.RESIZE;
 			}
-			Display display = Display.getDefault();
-			shell = new Shell(display, styleValue);
+			if(parent != null && parent instanceof Shell && metaclass.getType() == Shell.class) {
+			    shell = new Shell((Shell) parent, styleValue);
+			} else {
+			    shell = new Shell(Display.getDefault(), styleValue);
+			}
 			targetObject = shell;
 			invokeCreatededAction(element, targetObject);
 			loadData.setCurrentWidget(shell);
@@ -1201,7 +1205,6 @@ public class ResourceLoader implements IVisualElementLoader {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected Object getCollectionProperty(Class<?> type, Object swtObject,
 			DocumentObject element, String attrName)
 			throws IllegalAccessException, InvocationTargetException,
