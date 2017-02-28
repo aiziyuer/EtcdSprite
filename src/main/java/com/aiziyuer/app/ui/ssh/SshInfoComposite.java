@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Event;
 
 import com.aiziyuer.app.ssh.bo.SessionInfoBO;
 import com.aiziyuer.app.ui.common.AbstractComposite;
+import com.aiziyuer.app.ui.common.DialogFactory;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -54,8 +55,8 @@ public class SshInfoComposite extends AbstractComposite {
 			log.info("sessionTable double clicked.");
 
 			SessionInfoBO sessionInfoBO = SerializationUtils.clone(modle.getSessionInfoBO());
-			
-			int result = new SessionInfoDialog().open(getShell(), sessionInfoBO);
+
+			int result = DialogFactory.open(getShell(), SessionInfoDialog.class, sessionInfoBO);
 			if (result == SWT.OK) {
 				log.info("press ok.");
 			}

@@ -1,5 +1,6 @@
 <Shell xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
-	x:Class="com.aiziyuer.app.ui.ssh.SessionInfoDialog" text="XWT Application" Size="300, 240">
+	x:Class="com.aiziyuer.app.ui.ssh.SessionInfoDialog" text="SessionInfo Editor"
+	Size="300, 240" x:Name="shell" image="icons/logo.png">
 	<Shell.layout>
 		<GridLayout />
 	</Shell.layout>
@@ -30,7 +31,8 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionHostText">
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionHostText"
+			text="{Binding path=host, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
 					horizontalAlignment="FILL" />
@@ -42,8 +44,8 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" text="22"
-			x:Name="sessionPortText">
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionPortText"
+			text="{Binding path=port, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
 					horizontalAlignment="FILL" />
@@ -55,7 +57,8 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionUserNameText">
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionUserNameText"
+			text="{Binding path=userName, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
 					horizontalAlignment="FILL" />
@@ -67,7 +70,8 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessoinPasswordText">
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessoinPasswordText"
+			text="{Binding path=userPassword, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
 					horizontalAlignment="FILL" />
@@ -82,7 +86,7 @@
 			<GridData grabExcessHorizontalSpace="true"
 				horizontalAlignment="CENTER" verticalAlignment="FILL" />
 		</Composite.layoutData>
-		<Button text="OK" bounds="0, 0, 80, 27" SelectionEvent="onSelection" />
-		<Button text="Cancel" bounds="0, 0, 80, 27" />
+		<Button text="OK" bounds="0, 0, 80, 27" SelectionEvent="onOKButtonSelection" />
+		<Button text="Cancel" bounds="0, 0, 80, 27" SelectionEvent="onCancelButtonSelection" />
 	</Composite>
 </Shell>

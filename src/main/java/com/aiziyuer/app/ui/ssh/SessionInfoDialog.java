@@ -1,63 +1,68 @@
 package com.aiziyuer.app.ui.ssh;
 
-import java.net.URL;
-
-import org.eclipse.e4.xwt.IConstants;
 import org.eclipse.e4.xwt.XWT;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.e4.xwt.annotation.UI;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
-public class SessionInfoDialog {
+import com.aiziyuer.app.ssh.bo.SessionInfoBO;
+import com.aiziyuer.app.ui.common.AbstractDialog;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
+public class SessionInfoDialog extends AbstractDialog {
+
+	@UI
 	private Shell shell;
 
-	private int result = 0;
+	@UI
+	private Text sessionPortText;
 
-	/**
-	 * 打开对话框
-	 * 
-	 * @return = SWT.CANCEL/SWT.OK
-	 */
-	public int open(Shell parent, Object dataContext) {
-		shell = createContents(parent, dataContext);
-		shell.open();
-		shell.layout();
-		Display display = parent.getDisplay();
-		while (shell != null && !shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		return result;
+	private SessionInfoBO modle;
+
+	@Override
+	protected void dataInit() {
+		modle = (SessionInfoBO) XWT.getDataContext(shell);
+		log.info("data init fininshed.", modle);
 	}
 
-	private Shell createContents(Shell parent, Object dataContext) {
+	@Override
+	protected void addListener() {
 
-		try {
-			URL url = SessionInfoDialog.class
-					.getResource(SessionInfoDialog.class.getSimpleName() + IConstants.XWT_EXTENSION_SUFFIX);
-			
-			Control control = XWT.load(parent, url, dataContext);
-			shell = control.getShell();
-
-			// 设置对话框居中显示
-			Rectangle parentBounds = parent.getBounds();
-			Rectangle childBounds = shell.getBounds();
-			int x = parentBounds.x + (parentBounds.width - childBounds.width) / 2;
-			int y = parentBounds.y + (parentBounds.height - childBounds.height) / 2;
-			shell.setLocation(x, y);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return shell;
 	}
 
-	public void onSelection(Event event) {
-		System.out.println("hello");
+	@Override
+	protected void addDataBinding() {
+
+		// IObservableValue targetObservableValue =
+		// ViewersObservables.observeSingleSelection(sessionTableViewer);
+		// IObservableValue modelObservableValue =
+		// BeanProperties.value("sessionInfoBO").observe(modle);
+		// XWT.getBindingContext(this).bindValue(targetObservableValue,
+		// modelObservableValue);
+
+		// IObservableValue portTarget =
+		// WidgetProperties.text(SWT.Modify).observe(sessionPortText);
+		// IObservableValue portModel =
+		// BeanProperties.value("port").observe(modle);
+		//
+		// IConverter convertToStringArray =
+		// IConverter.create(String.class, String[].class, (o1) -> ((String)
+		// o1).split(","));
+		// XWT.getBindingContext(this).bindValue(portTarget, portModel,
+		// UpdateValueStrategy.create(convertToStringArray));
+	}
+
+	public void onOKButtonSelection(Event event) {
+		result = SWT.OK;
+		shell.dispose();
+	}
+
+	public void onCancelButtonSelection(Event event) {
+		result = SWT.CANCEL;
+		shell.dispose();
 	}
 }
