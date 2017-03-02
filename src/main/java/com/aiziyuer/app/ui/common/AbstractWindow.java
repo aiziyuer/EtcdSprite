@@ -1,16 +1,18 @@
 package com.aiziyuer.app.ui.common;
 
+import org.eclipse.swt.SWT;
+
 import lombok.Getter;
 
 /**
  * 对话框的抽象类, 每个对话框都会有一个结果
  *
  */
-public class AbstractDialog {
+public class AbstractWindow {
 
 	/** 对话框的返回值标示对话框的确认结果 */
 	@Getter
-	protected int result = 0;
+	protected int result = SWT.OK;
 
 	/**
 	 * 在完成xwt界面布局后再做一次布局调整

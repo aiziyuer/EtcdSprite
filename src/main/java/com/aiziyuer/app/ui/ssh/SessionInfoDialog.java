@@ -13,12 +13,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import com.aiziyuer.app.ssh.bo.SessionInfoBO;
-import com.aiziyuer.app.ui.common.AbstractDialog;
+import com.aiziyuer.app.ui.common.AbstractWindow;
 
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class SessionInfoDialog extends AbstractDialog {
+public class SessionInfoDialog extends AbstractWindow {
 
 	@UI
 	private Shell shell;
