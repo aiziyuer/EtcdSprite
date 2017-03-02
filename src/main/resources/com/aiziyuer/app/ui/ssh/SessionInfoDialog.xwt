@@ -19,7 +19,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionNameText">
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
 					horizontalAlignment="FILL" />
@@ -31,7 +31,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionHostText"
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name=""
 			text="{Binding path=host, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
@@ -57,7 +57,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessionUserNameText"
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name=""
 			text="{Binding path=userName, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
@@ -70,7 +70,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="sessoinPasswordText"
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name=""
 			text="{Binding path=userPassword, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
