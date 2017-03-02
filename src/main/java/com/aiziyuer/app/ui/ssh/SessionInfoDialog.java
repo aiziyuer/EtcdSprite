@@ -1,7 +1,12 @@
 package com.aiziyuer.app.ui.ssh;
 
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.e4.xwt.XWT;
 import org.eclipse.e4.xwt.annotation.UI;
+import org.eclipse.e4.xwt.converters.ObjectToString;
+import org.eclipse.e4.xwt.converters.StringToInteger;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
@@ -37,23 +42,10 @@ public class SessionInfoDialog extends AbstractDialog {
 	@Override
 	protected void addDataBinding() {
 
-		// IObservableValue targetObservableValue =
-		// ViewersObservables.observeSingleSelection(sessionTableViewer);
-		// IObservableValue modelObservableValue =
-		// BeanProperties.value("sessionInfoBO").observe(modle);
-		// XWT.getBindingContext(this).bindValue(targetObservableValue,
-		// modelObservableValue);
-
-		// IObservableValue portTarget =
-		// WidgetProperties.text(SWT.Modify).observe(sessionPortText);
-		// IObservableValue portModel =
-		// BeanProperties.value("port").observe(modle);
-		//
-		// IConverter convertToStringArray =
-		// IConverter.create(String.class, String[].class, (o1) -> ((String)
-		// o1).split(","));
-		// XWT.getBindingContext(this).bindValue(portTarget, portModel,
-		// UpdateValueStrategy.create(convertToStringArray));
+		XWT.getBindingContext(shell).bindValue(WidgetProperties.text(SWT.Modify).observe(sessionPortText),
+				BeanProperties.value("port").observe(modle),
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_UPDATE).setConverter(new StringToInteger()),
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_UPDATE).setConverter(new ObjectToString()));
 	}
 
 	public void onOKButtonSelection(Event event) {
