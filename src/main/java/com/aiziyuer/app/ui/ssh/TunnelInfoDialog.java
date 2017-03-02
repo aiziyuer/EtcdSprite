@@ -3,6 +3,7 @@ package com.aiziyuer.app.ui.ssh;
 import org.eclipse.e4.xwt.XWT;
 import org.eclipse.e4.xwt.annotation.UI;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -21,12 +22,23 @@ public class TunnelInfoDialog extends AbstractWindow {
 	@UI
 	private Text sessionPortText;
 
+	@UI
+	private Button okBtn;
+
 	private TunnelBO modle;
 
 	@Override
 	protected void dataInit() {
 		modle = (TunnelBO) XWT.getDataContext(shell);
 		log.info("data init fininshed.", modle);
+	}
+
+	@Override
+	protected void reLayout() {
+		super.reLayout();
+
+		// 对话框默认是确认键
+		shell.setDefaultButton(okBtn);
 	}
 
 	@Override
