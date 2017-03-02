@@ -20,13 +20,30 @@ import com.aiziyuer.app.ui.ssh.SshInfoModle;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class ApplicationWindow extends AbstractWindow{
+public class ApplicationWindow extends AbstractWindow {
 
 	@UI
 	private CTabFolder cTabFolder;
 
 	@UI
 	private CTabItem cTabItem;
+
+	@Override
+	protected void reLayout() {
+
+		// 释放右侧的区域内容
+		for (Control control : cTabFolder.getChildren())
+			control.dispose();
+
+		List<SessionInfoBO> sshInfoBOs = SshInfoBizImpl.getInstance().listSessionInfoBOs();
+		SshInfoModle modle = new SshInfoModle();
+		modle.getInput().addAll(sshInfoBOs);
+
+		cTabItem.setControl(CompositesFactory.buildUI(cTabFolder, SshInfoComposite.class, modle));
+
+		// 触发重新布局以显示新的内容
+		cTabFolder.layout();
+	}
 
 	public void onAboutMenuItemSelected(Event event) {
 		log.info("onAboutMenuItemSelect");
