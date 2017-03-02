@@ -33,14 +33,18 @@ public class SshInfoBizImpl implements ISshInfoBiz {
 	/** Session的映射 */
 	private Map<String, Session> sessionMap = new HashMap<String, Session>();
 
-	@Override
-	public List<SessionInfoBO> listSessionInfoBOs() {
+	/** ssh的连接信息 */
+	private static final List<SessionInfoBO> SSH_INFO_BO_LIST;
 
+	static {
 		String yamlFile = Paths.get(PathConstant.DATA_DIR, String.format("%s.yml", SessionInfoBO.class.getSimpleName()))
 				.toString();
-		List<SessionInfoBO> sshInfoBOs = YamlUtils.load(yamlFile);
+		SSH_INFO_BO_LIST = YamlUtils.load(yamlFile);
+	}
 
-		return sshInfoBOs;
+	@Override
+	public List<SessionInfoBO> listSessionInfoBOs() {
+		return SSH_INFO_BO_LIST;
 	}
 
 	@Override
@@ -48,8 +52,7 @@ public class SshInfoBizImpl implements ISshInfoBiz {
 
 		String yamlFile = Paths.get(PathConstant.DATA_DIR, String.format("%s.yml", SessionInfoBO.class.getSimpleName()))
 				.toString();
-		List<SessionInfoBO> sshInfoBOs = YamlUtils.load(yamlFile);
-		YamlUtils.save(yamlFile, sshInfoBOs);
+		YamlUtils.save(yamlFile, SSH_INFO_BO_LIST);
 
 		for (Session session : sessionMap.values()) {
 			session.disconnect();
