@@ -1,0 +1,107 @@
+<Shell xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	x:Class="com.aiziyuer.app.ui.ssh.TunnelInfoDialog" text="TunnelInfo Editor"
+	Size="300, 240" x:Name="shell" image="icons/logo.png">
+	<Shell.layout>
+		<GridLayout />
+	</Shell.layout>
+
+	<Composite>
+		<Composite.layout>
+			<GridLayout numColumns="2" />
+		</Composite.layout>
+		<Composite.layoutData>
+			<GridData grabExcessHorizontalSpace="true"
+				verticalAlignment="FILL" horizontalAlignment="FILL" />
+		</Composite.layoutData>
+
+		<Label text="Local Address:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="RIGHT" widthHint="100" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23"
+			text="{Binding path=localTunnelHost, updateSourceTrigger=PropertyChanged}">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="Local Port:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="110" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23"
+			text="{Binding path=localTunnelPort, updateSourceTrigger=PropertyChanged}">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="Remote Address:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="110" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23"
+			text="{Binding path=remoteTunnelHost, updateSourceTrigger=PropertyChanged}">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="Remote Port:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="110" />
+			</Label.layoutData>
+		</Label>
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23"
+			text="{Binding path=remoteTunnelPort, updateSourceTrigger=PropertyChanged}">
+			<Text.layoutData>
+				<GridData grabExcessHorizontalSpace="true"
+					horizontalAlignment="FILL" />
+			</Text.layoutData>
+		</Text>
+
+		<Label text="Direction:" bounds="0, 0, 61, 17" alignment="RIGHT">
+			<Label.layoutData>
+				<GridData horizontalAlignment="LEFT" widthHint="110" />
+			</Label.layoutData>
+		</Label>
+		<Composite>
+			<Composite.layout>
+				<GridLayout numColumns="2" />
+			</Composite.layout>
+			<Composite.layoutData>
+				<GridData horizontalAlignment="FILL"
+					grabExcessHorizontalSpace="true" />
+			</Composite.layoutData>
+			<Button x:Style="RADIO" text="Local" x:Name="localBtn">
+				<Button.layoutData>
+					<GridData grabExcessHorizontalSpace="true" />
+				</Button.layoutData>
+			</Button>
+			<Button x:Style="RADIO" text="Remote" x:Name="remoteBtn">
+				<Button.layoutData>
+					<GridData grabExcessHorizontalSpace="true" />
+				</Button.layoutData>
+			</Button>
+		</Composite>
+	</Composite>
+	<Composite bounds="0, 0, 64, 64">
+		<Composite.layout>
+			<RowLayout />
+		</Composite.layout>
+		<Composite.layoutData>
+			<GridData grabExcessHorizontalSpace="true"
+				horizontalAlignment="CENTER" verticalAlignment="FILL" />
+		</Composite.layoutData>
+		<Button text="OK" bounds="0, 0, 80, 27" SelectionEvent="onOKButtonSelection"
+			x:Name="okBtn" />
+		<Button text="Cancel" bounds="0, 0, 80, 27" SelectionEvent="onCancelButtonSelection"
+			x:Name="cancelBtn" />
+	</Composite>
+</Shell>

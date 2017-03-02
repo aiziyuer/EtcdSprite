@@ -6,6 +6,7 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 
 import com.aiziyuer.app.framework.common.CommonBO;
 import com.aiziyuer.app.ssh.bo.SessionInfoBO;
+import com.aiziyuer.app.ssh.bo.TunnelBO;
 import com.aiziyuer.app.ui.common.AdvanceWritableList;
 
 import lombok.Getter;
@@ -26,6 +27,10 @@ public class SshInfoModle extends CommonBO {
 
 	@Getter
 	private AdvanceWritableList tunnels = new AdvanceWritableList();
+	
+	@Getter
+	@Setter
+	private TunnelBO tunnelBO;
 
 	public SshInfoModle() {
 		

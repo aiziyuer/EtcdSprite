@@ -1,5 +1,7 @@
 package com.aiziyuer.app.ssh.bo;
 
+import java.io.Serializable;
+
 import com.aiziyuer.app.framework.common.CommonBO;
 
 import lombok.Data;
@@ -13,7 +15,12 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class TunnelBO extends CommonBO {
+public class TunnelBO extends CommonBO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** 别名 */
 	@Accessors(bound = true)

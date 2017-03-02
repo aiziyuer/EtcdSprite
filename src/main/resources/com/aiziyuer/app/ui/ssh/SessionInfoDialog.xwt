@@ -19,7 +19,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name="">
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" >
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
 					horizontalAlignment="FILL" />
@@ -31,7 +31,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name=""
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" 
 			text="{Binding path=host, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
@@ -57,7 +57,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name=""
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" 
 			text="{Binding path=userName, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
@@ -70,7 +70,7 @@
 				<GridData horizontalAlignment="LEFT" widthHint="80" />
 			</Label.layoutData>
 		</Label>
-		<Text x:Style="BORDER" bounds="0, 0, 73, 23" x:Name=""
+		<Text x:Style="BORDER" bounds="0, 0, 73, 23" 
 			text="{Binding path=userPassword, updateSourceTrigger=PropertyChanged}">
 			<Text.layoutData>
 				<GridData grabExcessHorizontalSpace="true"
