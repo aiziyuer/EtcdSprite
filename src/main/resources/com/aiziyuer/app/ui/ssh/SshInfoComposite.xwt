@@ -99,17 +99,17 @@
 						linesVisible="true" />
 					<TableViewer.columns>
 						<TableViewerColumn width="120" text="Local Address" />
-						<TableViewerColumn text="Local Port" width="100" />
-						<TableViewerColumn width="50" />
+						<TableViewerColumn text="Local Port" width="72" />
+						<TableViewerColumn width="33" text="DIR" />
 						<TableViewerColumn width="120" text="Remote Address" />
-						<TableViewerColumn width="100" text="Remote Port" />
+						<TableViewerColumn width="88" text="Remote Port" />
 					</TableViewer.columns>
 					<TableViewer.columnProperties>
 						<j:String>localTunnelHost</j:String>
-						<j:String>localTunnelHost</j:String>
-						<j:String>localTunnelHost</j:String>
-						<j:String>localTunnelHost</j:String>
-						<j:String>localTunnelHost</j:String>
+						<j:String>localTunnelPort</j:String>
+						<j:String>local</j:String>
+						<j:String>remoteTunnelHost</j:String>
+						<j:String>remoteTunnelPort</j:String>
 					</TableViewer.columnProperties>
 					<TableViewer.labelProvider>
 						<p1:TunnelInfoLabelProvider />

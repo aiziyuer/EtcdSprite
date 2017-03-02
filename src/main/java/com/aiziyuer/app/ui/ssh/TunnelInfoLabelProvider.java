@@ -1,5 +1,6 @@
 package com.aiziyuer.app.ui.ssh;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.graphics.Image;
 
@@ -16,6 +17,13 @@ public class TunnelInfoLabelProvider extends CommonTableLabelProvider {
 	}
 
 	public String getColumnText(Object element, int columnIndex) {
-		return super.getColumnText(element, columnIndex);
+
+		String ret = super.getColumnText(element, columnIndex);
+		String columeProperty = String.valueOf(tv.getColumnProperties()[columnIndex]);
+		if (StringUtils.equalsIgnoreCase("local", columeProperty)) {
+			ret = Boolean.valueOf(ret) ? "->" : "<-";
+		}
+
+		return ret;
 	}
 }
