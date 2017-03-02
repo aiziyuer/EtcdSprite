@@ -1,7 +1,10 @@
 package com.aiziyuer.app.ui.ssh;
 
+import org.eclipse.core.databinding.beans.PojoObservables;
+import org.eclipse.core.databinding.observable.value.SelectObservableValue;
 import org.eclipse.e4.xwt.XWT;
 import org.eclipse.e4.xwt.annotation.UI;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Event;
@@ -23,7 +26,7 @@ public class TunnelInfoDialog extends AbstractWindow {
 	private Text sessionPortText;
 
 	@UI
-	private Button okBtn;
+	private Button okBtn, localBtn, remoteBtn;
 
 	private TunnelBO modle;
 
@@ -49,14 +52,14 @@ public class TunnelInfoDialog extends AbstractWindow {
 	@Override
 	protected void addDataBinding() {
 
-		// XWT.getBindingContext(shell).bindValue(WidgetProperties.text(SWT.Modify).observe(sessionPortText),
-		// BeanProperties.value("port").observe(modle),
-		// new
-		// UpdateValueStrategy(UpdateValueStrategy.POLICY_UPDATE).setConverter(new
-		// StringToInteger()),
-		// new
-		// UpdateValueStrategy(UpdateValueStrategy.POLICY_UPDATE).setConverter(new
-		// ObjectToString()));
+		// 绑定boolean字段的属性到radio的按钮组
+		XWT.getBindingContext(shell).bindValue(new SelectObservableValue(Boolean.TYPE) {
+			{
+				addOption(Boolean.TRUE, SWTObservables.observeSelection(localBtn));
+				addOption(Boolean.FALSE, SWTObservables.observeSelection(remoteBtn));
+			}
+		}, PojoObservables.observeValue(modle, "local"));
+
 	}
 
 	public void onOKButtonSelection(Event event) {
